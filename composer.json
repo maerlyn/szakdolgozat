@@ -1,6 +1,6 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "name": "maerlyn/szakdolgozat",
+    "description": "Szakdolgozat",
     "autoload": {
         "psr-0": { "": "src/" }
     },
