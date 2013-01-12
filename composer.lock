@@ -1,5 +1,5 @@
 {
-    "hash": "7735615ff6d61f387b6233faba02b71b",
+    "hash": "2b90b2b7b77a5fe5592fe51c7efb6f69",
     "packages": [
         {
             "name": "doctrine/common",
@@ -267,6 +267,107 @@
             "keywords": [
                 "database",
                 "orm"
+            ]
+        },
+        {
+            "name": "fp/lightopenid",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/formapro/LightOpenID",
+                "reference": "ad14146f9c93e90699888e150427aca431dc3c18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/formapro/LightOpenID/archive/ad14146f9c93e90699888e150427aca431dc3c18.zip",
+                "reference": "ad14146f9c93e90699888e150427aca431dc3c18",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "time": "2012-04-04 08:39:51",
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "openid.php",
+                    "provider/provider.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Mewp",
+                    "email": "mewp151+gitorious.org@gmail.com"
+                }
+            ],
+            "description": "A PHP 5 library for easy openid authentication",
+            "homepage": "https://github.com/formapro/LightOpenID",
+            "keywords": [
+                "security",
+                "OpenId",
+                "Authentication"
+            ]
+        },
+        {
+            "name": "fp/openid-bundle",
+            "version": "1.3.5",
+            "target-dir": "Fp/OpenIdBundle",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/formapro/FpOpenIdBundle.git",
+                "reference": "1.3.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/formapro/FpOpenIdBundle/archive/1.3.5.zip",
+                "reference": "1.3.5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "fp/lightopenid": "dev-master",
+                "symfony/symfony": ">=2.1,<2.3-dev"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*@stable"
+            },
+            "suggest": {
+                "doctrine/orm": "If you want store identities to database",
+                "doctrine/mongodb-odm": "If you want store identities to mongodb"
+            },
+            "time": "2012-11-30 11:35:58",
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Fp\\OpenIdBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kotlyar Maksim",
+                    "email": "kotlyar.maksim@gmail.com"
+                },
+                {
+                    "name": "Community",
+                    "homepage": "https://github.com/formapro/FpOpenIdBundle/contributors"
+                }
+            ],
+            "description": "Symfony2 OpenID security extension",
+            "homepage": "https://github.com/formapro/FpOpenIdBundle",
+            "keywords": [
+                "security",
+                "OpenId",
+                "Authentication"
             ]
         },
         {
@@ -1201,6 +1302,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "twig/extensions": 20,
-        "kriswallsmith/assetic": 20
+        "kriswallsmith/assetic": 20,
+        "fp/lightopenid": 20
     }
 }

@@ -27,6 +27,8 @@ security:
             security: false
 
         secured_area:
+            fp_openid: ~
+
             pattern:    ^/demo/secured/
             form_login:
                 check_path: /demo/secured/login_check
@@ -37,7 +39,14 @@ security:
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
+        main:
+            pattern: ^/
+            fp_openid: ~
+            anonymous: true
+
 
     access_control:
+        - { path: ^/login_openid$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         #- { path: ^/_internal/secure, roles: ROLE_NO_ACCESS }
