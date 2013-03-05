@@ -16,37 +16,28 @@ security:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        openid_user_manager:
+            id: szakdolgozat.felhasznalo.openid_user_manager
+        database:
+            entity: { class: SzakdolgozatFelhasznaloBundle:Felhasznalo, property: email }
 
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        login:
-            pattern:  ^/demo/secured/login$
-            security: false
-
-        secured_area:
-            fp_openid: ~
-
-            pattern:    ^/demo/secured/
-            form_login:
-                check_path: /demo/secured/login_check
-                login_path: /demo/secured/login
-            logout:
-                path:   /demo/secured/logout
-                target: /demo/
-            #anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
         main:
             pattern: ^/
-            fp_openid: ~
-            anonymous: true
+            fp_openid:
+                create_user_if_not_exists: false
+                provider: openid_user_manager
+                required_attributes:
+                    - contact/email
 
 
     access_control:
         - { path: ^/login_openid$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, role: IS_AUTHENTICATED_OPENID }
 
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         #- { path: ^/_internal/secure, roles: ROLE_NO_ACCESS }

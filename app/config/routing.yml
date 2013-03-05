@@ -1,3 +1,8 @@
+szakdolgozat_felhasznalo:
+    resource: "@SzakdolgozatFelhasznaloBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 fp_openid_security:
     resource: "@FpOpenIdBundle/Resources/config/routing/security.xml"
 
