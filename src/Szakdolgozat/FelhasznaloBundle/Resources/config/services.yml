@@ -1,4 +1,4 @@
 services:
     szakdolgozat.felhasznalo.openid_user_manager:
-        class: Szakdolgozat\FelhasznaloBundleBundle\Entity\OpenIdUserManager
+        class: Szakdolgozat\FelhasznaloBundle\Security\User\OpenIdUserManager
         arguments: [@fp_openid.identity_manager, @doctrine.orm.entity_manager]
