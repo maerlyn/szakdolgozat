@@ -28,8 +28,10 @@ security:
 
         main:
             pattern: ^/
+            anonymous: true
+            logout: true
             fp_openid:
-                create_user_if_not_exists: false
+                create_user_if_not_exists: true
                 provider: openid_user_manager
                 required_attributes:
                     - contact/email

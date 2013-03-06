@@ -7,6 +7,12 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% if is_granted("IS_AUTHENTICATED_OPENID") %}
+        bejelentkezve
+        <a href="{{ path('fp_openid_security_logout') }}">Logout</a>
+        <br />
+        {% endif %}
+
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

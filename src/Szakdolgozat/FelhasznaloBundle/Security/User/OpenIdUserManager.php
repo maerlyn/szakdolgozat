@@ -23,7 +23,7 @@ class OpenIdUserManager extends UserManager
     public function createUserFromIdentity($identity, array $attributes = array())
     {
         if (!isset($attributes["contact/email"])) {
-            throw new \Exception("We need your email!");
+            throw new \Exception("Kell az email címed!");
         }
 
         $user = $this->entityManager->getRepository("SzakdolgozatFelhasznaloBundle:Felhasznalo")->findOneBy(array(
@@ -31,7 +31,7 @@ class OpenIdUserManager extends UserManager
         ));
 
         if (!$user) {
-            throw new BadCredentialsException("No corresponding user!");
+            throw new BadCredentialsException("Nincs ilyen felhasználó!");
         }
 
         $openIdIdentity = new OpenIdIdentity();

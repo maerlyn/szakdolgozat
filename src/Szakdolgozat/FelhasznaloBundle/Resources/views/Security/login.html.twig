@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    {% if error %}
+        <div>{{ error }}</div>
+    {% endif %}
+
+    <form id="fp_openid_login" action="{{ path("fp_openid_security_check") }}" method="post">
+        <input type="hidden" id="openid_identifier" name="openid_identifier" value="https://www.google.com/accounts/o8/id" />
+        <input type="hidden" id="target_path" name="_target_path" value="" />
+
+        <button>
+            Bejelentkezés
+        </button>
+    </form>
+{% endblock %}
