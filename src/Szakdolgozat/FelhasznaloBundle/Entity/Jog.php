@@ -155,4 +155,9 @@ class Jog
     {
         return $this->role;
     }
+
+    public function __toString()
+    {
+        return $this->getNev();
+    }
 }

@@ -1,0 +1,7 @@
+body {
+    padding-top: 50px;
+}
+
+.table-striped td:last-child {
+    text-align: right;
+}

@@ -1,0 +1,26 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<div class="page-header">
+    <h1>Felhasználók</h1>
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>Név</th>
+        <th>Email</th>
+        <th>Jogok</th>
+        <td></td>
+    </tr>
+    {% for f in felhasznalok %}
+    <tr>
+        <td>{{ f.nev }}</td>
+        <td>{{ f.email }}</td>
+        <td>{% for j in f.jogok %}{{ j.nev }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+        <td><a href="{{ path("szakdolgozat_felhasznalo_felhasznalo_edit", { "id": f.id }) }}">szerkesztés</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="{{ path("szakdolgozat_felhasznalo_felhasznalo_new") }}" class="btn btn-primary">Új felhasználó</a>
+{% endblock %}

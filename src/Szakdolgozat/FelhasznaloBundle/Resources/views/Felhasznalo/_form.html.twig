@@ -1,0 +1,15 @@
+{% form_theme form "::_form_theme.html.twig" %}
+
+<form method="post" action="{{ app.request.requesturi }}" class="form form-horizontal" novalidate="novalidate" {{ form_enctype(form) }}>
+    {{ form_row(form.nev) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.szervezeti_egyseg) }}
+    {{ form_row(form.pozicio) }}
+    {{ form_row(form.jogok) }}
+
+    <div class="form-actions">
+        {{ form_widget(form._token) }}
+        <input type="submit" value="Mentés" class="btn btn-primary" />
+        <a href="{{ path("szakdolgozat_felhasznalo_felhasznalo_index") }}">mégsem</a>
+    </div>
+</form>

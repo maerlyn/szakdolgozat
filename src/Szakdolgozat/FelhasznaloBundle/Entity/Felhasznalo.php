@@ -22,7 +22,7 @@ class Felhasznalo implements UserInterface
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, unique=true, nullable=false)
      */
     protected $email;
 
