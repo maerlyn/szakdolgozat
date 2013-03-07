@@ -1,5 +1,10 @@
+szakdolgozat_szakdolgozat:
+    resource: "@SzakdolgozatSzakdolgozatBundle/Resources/config/routing.yml"
+    prefix:   /
+
 szakdolgozat_felhasznalo:
     resource: "@SzakdolgozatFelhasznaloBundle/Resources/config/routing.yml"
+    prefix: /felhasznalo
 
 fp_openid_security:
     resource: "@FpOpenIdBundle/Resources/config/routing/security.xml"

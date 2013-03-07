@@ -1,0 +1,3 @@
+szakdolgozat_szakdolgozat_homepage:
+    pattern:  /
+    defaults: { _controller: SzakdolgozatSzakdolgozatBundle:Default:index }

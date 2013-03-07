@@ -1,0 +1,7 @@
+parameters:
+#    szakdolgozat_szakdolgozat.example.class: Szakdolgozat\SzakdolgozatBundle\Example
+
+services:
+#    szakdolgozat_szakdolgozat.example:
+#        class: %szakdolgozat_szakdolgozat.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

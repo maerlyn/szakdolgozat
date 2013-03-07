@@ -22,6 +22,7 @@ class AppKernel extends Kernel
 
             new Fp\OpenIdBundle\FpOpenIdBundle(),
             new Szakdolgozat\FelhasznaloBundle\SzakdolgozatFelhasznaloBundle(),
+            new Szakdolgozat\SzakdolgozatBundle\SzakdolgozatSzakdolgozatBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
