@@ -6,4 +6,14 @@
 </div>
 
 {% include "SzakdolgozatUlesBundle:Ules:_form.html.twig" %}
+
+<div class="page-header">
+    <h1>Ülés törlése</h1>
+</div>
+
+<form action="{{ app.request.requesturi|replace({ "szerkesztes": "torles" }) }}" method="post" class="form-horizontal">
+    <div class="form-actions">
+        <input type="submit" value="Törlés" class="btn btn-danger" />
+    </div>
+</form>
 {% endblock %}

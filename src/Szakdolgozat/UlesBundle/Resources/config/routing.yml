@@ -9,3 +9,9 @@ szakdolgozat_ules_ules_new:
 szakdolgozat_ules_ules_edit:
     pattern:    /{id}/szerkesztes
     defaults:   { _controller: "SzakdolgozatUlesBundle:Ules:edit" }
+
+szakdolgozat_ules_ules_delete:
+    pattern:    /{id}/torles
+    defaults:   { _controller: "SzakdolgozatUlesBundle:Ules:delete" }
+    requirements:
+        _method: POST

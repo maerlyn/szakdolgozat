@@ -49,7 +49,7 @@ class FelhasznaloController extends Controller
             $form->bind($request);
 
             if ($form->isValid()) {
-                $this->getDoctrine()->getEntityManager()->flush();
+                $this->getDoctrine()->getManager()->flush();
 
                 return $this->redirect($this->generateUrl("szakdolgozat_felhasznalo_felhasznalo_index"));
             }

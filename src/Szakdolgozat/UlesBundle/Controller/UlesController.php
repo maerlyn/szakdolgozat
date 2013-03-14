@@ -55,11 +55,29 @@ class UlesController extends Controller
         $form = $this->createForm(new UlesType(), $ules);
 
         if ($request->isMethod("post")) {
-            $this->getDoctrine()->getManager()->flush();
+            $form->bind($request);
 
-            return $this->redirect($this->generateUrl("szakdolgozat_ules_ules_index"));
+            if ($form->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirect($this->generateUrl("szakdolgozat_ules_ules_index"));
+            }
         }
 
         return $this->render("SzakdolgozatUlesBundle:Ules:edit.html.twig", array("form" => $form->createView()));
+    }
+
+    public function deleteAction(Ules $ules, Request $request)
+    {
+        if ($ules->getFelhasznalo() != $this->getUser()) {
+            throw new AccessDeniedHttpException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($ules);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl("szakdolgozat_ules_ules_index"));
     }
 }
