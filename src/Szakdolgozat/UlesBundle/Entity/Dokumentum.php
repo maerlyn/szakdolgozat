@@ -18,7 +18,7 @@ class Dokumentum
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ules")
+     * @ORM\ManyToOne(targetEntity="Ules", inversedBy="dokumentumok")
      * @ORM\JoinColumn(name="ules_id", referencedColumnName="id")
      */
     protected $ules;

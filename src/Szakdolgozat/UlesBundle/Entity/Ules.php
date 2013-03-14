@@ -50,12 +50,18 @@ class Ules
      * @ORM\JoinTable(name="ules_meghivott")
      */
     protected $meghivottak;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Dokumentum", mappedBy="ules")
+     */
+    protected $dokumentumok;
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->meghivottak = new ArrayCollection();
+        $this->dokumentumok = new ArrayCollection();
     }
     
     /**
@@ -214,5 +220,38 @@ class Ules
     public function getMeghivottak()
     {
         return $this->meghivottak;
+    }
+
+    /**
+     * Add dokumentumok
+     *
+     * @param \Szakdolgozat\UlesBundle\Entity\Dokumentum $dokumentumok
+     * @return Ules
+     */
+    public function addDokumentumok(\Szakdolgozat\UlesBundle\Entity\Dokumentum $dokumentumok)
+    {
+        $this->dokumentumok[] = $dokumentumok;
+    
+        return $this;
+    }
+
+    /**
+     * Remove dokumentumok
+     *
+     * @param \Szakdolgozat\UlesBundle\Entity\Dokumentum $dokumentumok
+     */
+    public function removeDokumentumok(\Szakdolgozat\UlesBundle\Entity\Dokumentum $dokumentumok)
+    {
+        $this->dokumentumok->removeElement($dokumentumok);
+    }
+
+    /**
+     * Get dokumentumok
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDokumentumok()
+    {
+        return $this->dokumentumok;
     }
 }
