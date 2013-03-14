@@ -1,5 +1,3 @@
-{% form_theme form "::_form_theme.html.twig" %}
-
 <form method="post" action="{{ app.request.requesturi }}" class="form form-horizontal" novalidate="novalidate" {{ form_enctype(form) }}>
     {{ form_row(form.nev) }}
     {{ form_row(form.email) }}
