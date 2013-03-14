@@ -1,7 +1,7 @@
 szakdolgozat_ules:
     resource: "@SzakdolgozatUlesBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /ules
 
 szakdolgozat_szakdolgozat:
     resource: "@SzakdolgozatSzakdolgozatBundle/Resources/config/routing.yml"
