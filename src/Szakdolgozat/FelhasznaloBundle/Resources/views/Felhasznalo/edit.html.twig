@@ -7,9 +7,7 @@
 
 {% include "SzakdolgozatFelhasznaloBundle:Felhasznalo:_form.html.twig" %}
 
-<div class="page-header">
-    <h1>Felhasználó törlése</h1>
-</div>
+<h2>Felhasználó törlése</h2>
 
 <form method="post" class="form form-horizontal" action="{{ path("szakdolgozat_felhasznalo_felhasznalo_delete", { "id": felhasznalo.id }) }}">
     <div class="form-actions">

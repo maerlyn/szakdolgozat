@@ -7,9 +7,7 @@
 
 {% include "SzakdolgozatUlesBundle:Ules:_form.html.twig" %}
 
-<div class="page-header">
-    <h1>Ülés törlése</h1>
-</div>
+<h2>Ülés törlése</h2>
 
 <form action="{{ app.request.requesturi|replace({ "szerkesztes": "torles" }) }}" method="post" class="form-horizontal">
     <div class="form-actions">
