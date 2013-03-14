@@ -223,4 +223,9 @@ class Felhasznalo implements UserInterface
     {
         return $this->nev;
     }
+
+    public function __toString()
+    {
+        return $this->nev;
+    }
 }

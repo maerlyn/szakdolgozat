@@ -1,0 +1,26 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Hirdeti</th>
+            <th>Név</th>
+            <th>Dátum</th>
+            <th>Helyszín</th>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for ules in ulesek %}
+        <tr>
+            <td>{{ ules.felhasznalo ? ules.felhasznalo.nev : "" }}</td>
+            <td>{{ ules.nev }}</td>
+            <td>{{ ules.datum|date("Y. m. d. H:i") }}</td>
+            <td>{{ ules.helyszin }}</td>
+            <td>
+                {% if app.user == ules.felhasznalo %}
+                <a href="{{ path("szakdolgozat_ules_ules_edit", { "id": ules.id }) }}">szerkesztés</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

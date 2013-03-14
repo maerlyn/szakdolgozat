@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<div class="page-header">
+    <h1>Ülések</h1>
+</div>
+
+{% include "SzakdolgozatUlesBundle:Ules:_list.html.twig" %}
+
+{% if is_granted("ROLE_ULESHIRDETO") %}
+<a href="{{ path("szakdolgozat_ules_ules_new") }}" class="btn btn-primary">Új ülés</a>
+{% endif %}
+{% endblock %}

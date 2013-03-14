@@ -5,3 +5,15 @@ body {
 .table-striped td:last-child {
     text-align: right;
 }
+
+#ules_datum select {
+    width: 70px;
+}
+
+select#ules_datum_date_month {
+    width: 115px;
+}
+
+#ules_datum_date, #ules_datum_time {
+    display: inline-block;
+}

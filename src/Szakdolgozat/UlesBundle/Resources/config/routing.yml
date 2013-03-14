@@ -1,0 +1,11 @@
+szakdolgozat_ules_ules_index:
+    pattern:    /
+    defaults:   { _controller: "SzakdolgozatUlesBundle:Ules:index" }
+
+szakdolgozat_ules_ules_new:
+    pattern:    /uj
+    defaults:   { _controller: "SzakdolgozatUlesBundle:Ules:new" }
+
+szakdolgozat_ules_ules_edit:
+    pattern:    /{id}/szerkesztes
+    defaults:   { _controller: "SzakdolgozatUlesBundle:Ules:edit" }

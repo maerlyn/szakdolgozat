@@ -1,0 +1,13 @@
+<form action="{{ app.request.requesturi }}" method="post" class="form-horizontal" {{ form_enctype(form) }} novalidate="novalidate">
+    {{ form_row(form.nev) }}
+    {{ form_row(form.leiras) }}
+    {{ form_row(form.datum) }}
+    {{ form_row(form.helyszin) }}
+    {{ form_row(form.meghivottak) }}
+
+    <div class="form-actions">
+        {{ form_widget(form._token) }}
+        <input type="submit" value="Mentés" class="btn btn-primary" />
+        <a href="{{ path("szakdolgozat_ules_ules_index") }}">mégsem</a>
+    </div>
+</form>

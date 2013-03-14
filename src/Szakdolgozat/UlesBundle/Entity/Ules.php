@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Szakdolgozat\UlesBundle\Entity\UlesRepository")
  * @ORM\Table(name="ules")
  */
 class Ules
