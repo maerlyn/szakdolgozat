@@ -15,3 +15,13 @@ szakdolgozat_ules_ules_delete:
     defaults:   { _controller: "SzakdolgozatUlesBundle:Ules:delete" }
     requirements:
         _method: POST
+
+szakdolgozat_ules_dokumentum_new:
+    pattern:    /{id}/uj_dokumentum
+    defaults:   { _controller: "SzakdolgozatUlesBundle:Dokumentum:new" }
+    requirements:
+        _method: POST
+
+szakdolgozat_ules_dokumentum_download:
+    pattern:    /dokumentum_letoltes/{dokumentum_id}
+    defaults:   { _controller: "SzakdolgozatUlesBundle:Dokumentum:download" }

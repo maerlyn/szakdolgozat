@@ -1,0 +1,20 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Leírás</th>
+            <th>Filenév</th>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for dok in dokumentumok %}
+        <tr>
+            <td>{{ dok.leiras }}</td>
+            <td>{{ dok.eredetiFilenev }}</td>
+            <td>
+                <a href="{{ path("szakdolgozat_ules_dokumentum_download", { "dokumentum_id": dok.id }) }}">letöltés</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

@@ -7,6 +7,13 @@
 
 {% include "SzakdolgozatUlesBundle:Ules:_form.html.twig" %}
 
+<h2>Ülés dokumentumai</h2>
+
+{% include "SzakdolgozatUlesBundle:Dokumentum:_list.html.twig" with { "dokumentumok": ules.dokumentumok } %}
+
+<h3>Új dokumentum</h3>
+{% include "SzakdolgozatUlesBundle:Dokumentum:_form.html.twig" with { "form": dokumentumform, "ules": ules } %}
+
 <h2>Ülés törlése</h2>
 
 <form action="{{ app.request.requesturi|replace({ "szerkesztes": "torles" }) }}" method="post" class="form-horizontal">

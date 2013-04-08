@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="dokumentum")
  */
 class Dokumentum
@@ -32,6 +33,8 @@ class Dokumentum
      * @ORM\Column(type="string", length=255)
      */
     protected $eredeti_filenev;
+
+    public $file; // a feltoltes form hasznalja
 
     /**
      * Get id
@@ -110,5 +113,52 @@ class Dokumentum
     public function getUles()
     {
         return $this->ules;
+    }
+
+    public function getUploadDir()
+    {
+        return __DIR__ . "/../../../../uploads/dokumentum/";
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        $this->setEredetiFilenev($this->file->getClientOriginalName());
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function uploadFile()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        $this->file->move($this->getUploadDir(), $this->id);
+
+        unset($this->file);
+
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeFile()
+    {
+        @unlink($this->getUploadDir() . $this->id);
+    }
+
+    public function getFilename()
+    {
+        return $this->getUploadDir() . $this->id;
     }
 }

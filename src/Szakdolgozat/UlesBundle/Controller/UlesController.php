@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Szakdolgozat\UlesBundle\Entity\Ules;
+use Szakdolgozat\UlesBundle\Form\DokumentumType;
 use Szakdolgozat\UlesBundle\Form\UlesType;
 
 class UlesController extends Controller
@@ -64,10 +65,14 @@ class UlesController extends Controller
             }
         }
 
-        return $this->render("SzakdolgozatUlesBundle:Ules:edit.html.twig", array("form" => $form->createView()));
+        return $this->render("SzakdolgozatUlesBundle:Ules:edit.html.twig", array(
+            "form"              =>  $form->createView(),
+            "ules"              =>  $ules,
+            "dokumentumform"    =>  $this->createForm(new DokumentumType())->createView(),
+        ));
     }
 
-    public function deleteAction(Ules $ules, Request $request)
+    public function deleteAction(Ules $ules)
     {
         if ($ules->getFelhasznalo() != $this->getUser()) {
             throw new AccessDeniedHttpException();

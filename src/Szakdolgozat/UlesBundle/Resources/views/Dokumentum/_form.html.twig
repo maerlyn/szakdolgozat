@@ -1,0 +1,9 @@
+<form action="{{ path("szakdolgozat_ules_dokumentum_new", { "id": ules.id }) }}" method="post" class="form-horizontal" {{ form_enctype(form) }}>
+    {{ form_row(form.leiras) }}
+    {{ form_row(form.file) }}
+
+    <div class="form-actions">
+        {{ form_widget(form._token) }}
+        <input type="submit" value="Feltöltés" class="btn btn-primary" />
+    </div>
+</form>

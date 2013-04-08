@@ -4,3 +4,9 @@ services:
         arguments: [@doctrine.orm.default_entity_manager]
         tags:
             - { name: "request.param_converter" }
+
+    szakdolgozat.ules.dokumentum_param_converter:
+        class: Szakdolgozat\UlesBundle\Request\ParamConverter\DokumentumParamConverter
+        arguments: [@doctrine.orm.default_entity_manager]
+        tags:
+            - { name: "request.param_converter", priority: 100 }
