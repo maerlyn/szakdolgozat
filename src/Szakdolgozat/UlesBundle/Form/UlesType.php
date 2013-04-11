@@ -36,6 +36,10 @@ class UlesType extends AbstractType
             "constraints"   =>  new Assert\NotBlank(),
         ));
 
+        $builder->add("nyilvanos", "checkbox", array(
+            "label"         =>  "Nyilvános",
+        ));
+
         $builder->add("meghivottak", "entity", array(
             "label"         =>  "Meghívottak",
             "class"         =>  "SzakdolgozatFelhasznaloBundle:Felhasznalo",

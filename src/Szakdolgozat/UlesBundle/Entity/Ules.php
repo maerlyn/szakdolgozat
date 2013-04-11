@@ -55,6 +55,12 @@ class Ules
      * @ORM\OneToMany(targetEntity="Dokumentum", mappedBy="ules")
      */
     protected $dokumentumok;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $nyilvanos;
+
     /**
      * Constructor
      */
@@ -253,5 +259,28 @@ class Ules
     public function getDokumentumok()
     {
         return $this->dokumentumok;
+    }
+
+    /**
+     * Set nyilvanos
+     *
+     * @param boolean $nyilvanos
+     * @return Ules
+     */
+    public function setNyilvanos($nyilvanos)
+    {
+        $this->nyilvanos = $nyilvanos;
+    
+        return $this;
+    }
+
+    /**
+     * Get nyilvanos
+     *
+     * @return boolean 
+     */
+    public function getNyilvanos()
+    {
+        return $this->nyilvanos;
     }
 }
