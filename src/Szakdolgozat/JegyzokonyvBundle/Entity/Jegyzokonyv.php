@@ -2,6 +2,7 @@
 
 namespace Szakdolgozat\JegyzokonyvBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,9 +57,14 @@ class Jegyzokonyv
     protected $hitelesito_2;
 
     /**
+     * @ORM\OneToMany(targetEntity="JegyzokonyvElem", mappedBy="jegyzokonyv")
+     */
+    protected $elemek;
+
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -74,14 +80,14 @@ class Jegyzokonyv
     public function setNev($nev)
     {
         $this->nev = $nev;
-    
+
         return $this;
     }
 
     /**
      * Get nev
      *
-     * @return string 
+     * @return string
      */
     public function getNev()
     {
@@ -97,14 +103,14 @@ class Jegyzokonyv
     public function setDatum($datum)
     {
         $this->datum = $datum;
-    
+
         return $this;
     }
 
     /**
      * Get datum
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDatum()
     {
@@ -120,14 +126,14 @@ class Jegyzokonyv
     public function setHelyszin($helyszin)
     {
         $this->helyszin = $helyszin;
-    
+
         return $this;
     }
 
     /**
      * Get helyszin
      *
-     * @return string 
+     * @return string
      */
     public function getHelyszin()
     {
@@ -143,14 +149,14 @@ class Jegyzokonyv
     public function setJegyzokonyviro(\Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo $jegyzokonyviro = null)
     {
         $this->jegyzokonyviro = $jegyzokonyviro;
-    
+
         return $this;
     }
 
     /**
      * Get jegyzokonyviro
      *
-     * @return \Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo 
+     * @return \Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo
      */
     public function getJegyzokonyviro()
     {
@@ -166,14 +172,14 @@ class Jegyzokonyv
     public function setUles(\Szakdolgozat\UlesBundle\Entity\Ules $ules = null)
     {
         $this->ules = $ules;
-    
+
         return $this;
     }
 
     /**
      * Get ules
      *
-     * @return \Szakdolgozat\UlesBundle\Entity\Ules 
+     * @return \Szakdolgozat\UlesBundle\Entity\Ules
      */
     public function getUles()
     {
@@ -189,14 +195,14 @@ class Jegyzokonyv
     public function setHitelesito1(\Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo $hitelesito1 = null)
     {
         $this->hitelesito_1 = $hitelesito1;
-    
+
         return $this;
     }
 
     /**
      * Get hitelesito_1
      *
-     * @return \Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo 
+     * @return \Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo
      */
     public function getHitelesito1()
     {
@@ -212,17 +218,57 @@ class Jegyzokonyv
     public function setHitelesito2(\Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo $hitelesito2 = null)
     {
         $this->hitelesito_2 = $hitelesito2;
-    
+
         return $this;
     }
 
     /**
      * Get hitelesito_2
      *
-     * @return \Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo 
+     * @return \Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo
      */
     public function getHitelesito2()
     {
         return $this->hitelesito_2;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->elemek = new ArrayCollection();
+    }
+
+    /**
+     * Add elemek
+     *
+     * @param \Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvElem $elemek
+     * @return Jegyzokonyv
+     */
+    public function addElemek(\Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvElem $elemek)
+    {
+        $this->elemek[] = $elemek;
+
+        return $this;
+    }
+
+    /**
+     * Remove elemek
+     *
+     * @param \Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvElem $elemek
+     */
+    public function removeElemek(\Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvElem $elemek)
+    {
+        $this->elemek->removeElement($elemek);
+    }
+
+    /**
+     * Get elemek
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getElemek()
+    {
+        return $this->elemek;
     }
 }

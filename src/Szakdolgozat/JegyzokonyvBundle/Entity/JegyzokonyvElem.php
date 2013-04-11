@@ -38,7 +38,7 @@ class JegyzokonyvElem
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -54,14 +54,14 @@ class JegyzokonyvElem
     public function setPozicio($pozicio)
     {
         $this->pozicio = $pozicio;
-    
+
         return $this;
     }
 
     /**
      * Get pozicio
      *
-     * @return integer 
+     * @return integer
      */
     public function getPozicio()
     {
@@ -77,14 +77,14 @@ class JegyzokonyvElem
     public function setJegyzokonyv(\Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv $jegyzokonyv = null)
     {
         $this->jegyzokonyv = $jegyzokonyv;
-    
+
         return $this;
     }
 
     /**
      * Get jegyzokonyv
      *
-     * @return \Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv 
+     * @return \Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv
      */
     public function getJegyzokonyv()
     {
