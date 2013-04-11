@@ -34,7 +34,7 @@ class FelhasznaloParamConverter implements ParamConverterInterface
         }
 
         $param = $configuration->getName();
-        $request->setAttribute($param, $f);
+        $request->attributes->set($param, $f);
 
         return true;
     }

@@ -1,3 +1,7 @@
+szakdolgozat_jegyzokony:
+    resource: "@SzakdolgozatJegyzokonyBundle/Resources/config/routing.yml"
+    prefix:   /jegyzokonyv
+
 szakdolgozat_ules:
     resource: "@SzakdolgozatUlesBundle/Resources/config/routing.yml"
     prefix:   /ules

@@ -33,7 +33,7 @@ class UlesParamConverter implements ParamConverterInterface
         }
 
         $param = $configuration->getName();
-        $request->setAttribute($param, $u);
+        $request->attributes->set($param, $u);
 
         return true;
     }
