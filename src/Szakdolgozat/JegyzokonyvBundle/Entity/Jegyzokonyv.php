@@ -19,7 +19,7 @@ class Jegyzokonyv
 
     /**
      * @ORM\ManyToOne(targetEntity="Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo")
-     * @ORM\JoinColumn(name="jegyzokonyviro_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="jegyzokonyviro_id", referencedColumnName="id", nullable=false)
      */
     protected $jegyzokonyviro;
 

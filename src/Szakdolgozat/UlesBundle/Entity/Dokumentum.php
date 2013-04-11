@@ -20,7 +20,7 @@ class Dokumentum
 
     /**
      * @ORM\ManyToOne(targetEntity="Ules", inversedBy="dokumentumok")
-     * @ORM\JoinColumn(name="ules_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="ules_id", referencedColumnName="id", nullable=false)
      */
     protected $ules;
 

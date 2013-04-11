@@ -21,7 +21,7 @@ class Ules
 
     /**
      * @ORM\ManyToOne(targetEntity="Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo")
-     * @ORM\JoinColumn(name="felhasznalo_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="felhasznalo_id", referencedColumnName="id", nullable=false)
      */
     protected $felhasznalo;
 
