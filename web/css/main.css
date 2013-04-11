@@ -6,14 +6,14 @@ body {
     text-align: right;
 }
 
-#ules_datum select {
+#ules_datum select, #jegyzokonyv_datum select {
     width: 70px;
 }
 
-select#ules_datum_date_month {
+select#ules_datum_date_month, select#jegyzokonyv_datum_date_month {
     width: 115px;
 }
 
-#ules_datum_date, #ules_datum_time {
+#ules_datum_date, #ules_datum_time, #jegyzokonyv_datum_date, #jegyzokonyv_datum_time {
     display: inline-block;
 }
