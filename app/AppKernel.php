@@ -24,7 +24,7 @@ class AppKernel extends Kernel
             new Szakdolgozat\FelhasznaloBundle\SzakdolgozatFelhasznaloBundle(),
             new Szakdolgozat\SzakdolgozatBundle\SzakdolgozatSzakdolgozatBundle(),
             new Szakdolgozat\UlesBundle\SzakdolgozatUlesBundle(),
-            new Szakdolgozat\JegyzokonyBundle\SzakdolgozatJegyzokonyBundle(),
+            new Szakdolgozat\JegyzokonyvBundle\SzakdolgozatJegyzokonyvBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

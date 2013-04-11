@@ -62,6 +62,11 @@ class Ules
     protected $nyilvanos;
 
     /**
+     * @ORM\OneToOne(targetEntity="Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv", inversedBy="ules")
+     */
+    protected $jegyzokonyv;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -282,5 +287,28 @@ class Ules
     public function getNyilvanos()
     {
         return $this->nyilvanos;
+    }
+
+    /**
+     * Set jegyzokonyv
+     *
+     * @param \Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv $jegyzokonyv
+     * @return Ules
+     */
+    public function setJegyzokonyv(\Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv $jegyzokonyv = null)
+    {
+        $this->jegyzokonyv = $jegyzokonyv;
+    
+        return $this;
+    }
+
+    /**
+     * Get jegyzokonyv
+     *
+     * @return \Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv 
+     */
+    public function getJegyzokonyv()
+    {
+        return $this->jegyzokonyv;
     }
 }

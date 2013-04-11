@@ -1,0 +1,3 @@
+szakdolgozat_jegyzokonyv_jegyzokonyv_index:
+    pattern:  /
+    defaults: { _controller: SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:index }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Szakdolgozat\JegyzokonyBundle\Controller;
+namespace Szakdolgozat\JegyzokonyvBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,6 +8,6 @@ class JegyzokonyvController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SzakdolgozatJegyzokonyBundle:Jegyzokonyv:index.html.twig');
+        return $this->render('SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:index.html.twig');
     }
 }
