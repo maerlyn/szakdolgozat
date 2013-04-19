@@ -17,3 +17,49 @@ select#ules_datum_date_month, select#jegyzokonyv_datum_date_month {
 #ules_datum_date, #ules_datum_time, #jegyzokonyv_datum_date, #jegyzokonyv_datum_time {
     display: inline-block;
 }
+
+.hidden {
+    display: none;
+}
+
+#jegyzokonyv_elemek .closebtn {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 0 4px 0 4px;
+    right: -1px;
+    padding: 3px 7px;
+    position: absolute;
+    top: -1px;
+}
+
+#jegyzokonyv_elemek .felszolalas:after, .szavazas:after, .napirendipont:after {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 4px 0;
+    color: #9da0a4;
+    font-size: 12px;
+    font-weight: bold;
+    left: -1px;
+    padding: 3px 7px;
+    position: absolute;
+    top: -1px;
+}
+
+#jegyzokonyv_elemek .felszolalas:after {
+    content: "Felszólalás";
+}
+#jegyzokonyv_elemek .szavazas:after {
+    content: "Szavazás";
+}
+#jegyzokonyv_elemek .napirendipont:after {
+    content: "Napirendi pont";
+}
+
+#jegyzokonyv_elemek > div {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px 4px 4px 4px;
+    margin: 15px 0;
+    padding: 39px 0 0 0;
+    position: relative;
+}

@@ -13,6 +13,27 @@
     {{ form_row(form.datum) }}
     {{ form_row(form.helyszin) }}
 
+    <div id="jegyzokonyv_elemek">
+        <div class="felszolalas">
+            <div class="closebtn"><a href="#">x</a></div>
+            {{ form_row(templatek.felszolalas.szoveg) }}
+        </div>
+
+        <div class="napirendipont">
+            <div class="closebtn"><a href="#">x</a></div>
+            {{ form_row(templatek.napirendipont.cim) }}
+        </div>
+
+        <div class="szavazas">
+            <div class="closebtn"><a href="#">x</a></div>
+            {{ form_row(templatek.szavazas.cim) }}
+            {{ form_row(templatek.szavazas.mellette) }}
+            {{ form_row(templatek.szavazas.ellene) }}
+            {{ form_row(templatek.szavazas.tartozkodott) }}
+            {{ form_row(templatek.szavazas.ervenytelen) }}
+        </div>
+    </div>
+
     <div class="form-actions">
         {{ form_widget(form._token) }}
         <input type="submit" value="Mentés" class="btn btn-primary" />
