@@ -4,6 +4,7 @@ namespace Szakdolgozat\JegyzokonyvBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class NapirendiPontType extends AbstractType
@@ -13,6 +14,15 @@ class NapirendiPontType extends AbstractType
         $builder->add("cim", "text", array(
             "label"         =>  "Cím",
             "constraints"   =>  new Assert\NotBlank(),
+        ));
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        parent::setDefaultOptions($resolver);
+
+        $resolver->setDefaults(array(
+            "csrf_protection"   =>  false,
         ));
     }
 

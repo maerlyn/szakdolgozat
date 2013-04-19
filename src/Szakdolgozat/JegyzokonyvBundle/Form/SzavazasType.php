@@ -4,6 +4,7 @@ namespace Szakdolgozat\JegyzokonyvBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class SzavazasType extends AbstractType
@@ -31,6 +32,16 @@ class SzavazasType extends AbstractType
             "label"         =>  "Érvénytelen",
         ));
     }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        parent::setDefaultOptions($resolver);
+
+        $resolver->setDefaults(array(
+            "csrf_protection"   =>  false,
+        ));
+    }
+
 
     public function getName()
     {
