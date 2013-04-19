@@ -107,4 +107,9 @@ class JegyzokonyvNapirendiPont extends JegyzokonyvElem
     {
         return $this->jegyzokonyv;
     }
+
+    public function fromArray(array $data)
+    {
+        $this->cim = $data["cim"];
+    }
 }

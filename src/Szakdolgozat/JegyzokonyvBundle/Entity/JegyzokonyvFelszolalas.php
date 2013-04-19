@@ -107,4 +107,9 @@ class JegyzokonyvFelszolalas extends JegyzokonyvElem
     {
         return $this->jegyzokonyv;
     }
+
+    public function fromArray(array $data)
+    {
+        $this->szoveg = $data["szoveg"];
+    }
 }

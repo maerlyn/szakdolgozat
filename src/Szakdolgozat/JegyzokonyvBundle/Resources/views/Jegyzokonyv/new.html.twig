@@ -1,5 +1,7 @@
 {% extends "::base.html.twig" %}
 
+{% from "SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:_elem_macrok.html.twig" import felszolalas, napirendipont, szavazas %}
+
 {% block body %}
 <div class="page-header">
     <h1>Új jegyzőkönyv</h1>
@@ -14,31 +16,22 @@
     {{ form_row(form.helyszin) }}
 
     <div id="jegyzokonyv_elemek">
-        <div class="jegyzokonyvelem felszolalas">
-            <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
-            {{ form_row(templatek.felszolalas.szoveg) }}
-        </div>
-
-        <div class="jegyzokonyvelem napirendipont">
-            <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
-            {{ form_row(templatek.napirendipont.cim) }}
-        </div>
-
-        <div class="jegyzokonyvelem szavazas">
-            <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
-            {{ form_row(templatek.szavazas.cim) }}
-            {{ form_row(templatek.szavazas.mellette) }}
-            {{ form_row(templatek.szavazas.ellene) }}
-            {{ form_row(templatek.szavazas.tartozkodott) }}
-            {{ form_row(templatek.szavazas.ervenytelen) }}
-        </div>
+    {% for elem in elemek|default([]) %}
+    {% if elem.tipus == "felszolalas" %}
+        {{ felszolalas(elem.id, elem.form) }}
+    {% elseif elem.tipus == "napirendipont" %}
+        {{ napirendipont(elem.id, elem.form) }}
+    {% else %}
+        {{ szavazas(elem.id, elem.form) }}
+    {% endif %}
+    {% endfor %}
     </div>
 
     <div class="control-group">
         <div class="controls">
-            <a class="btn" id="uj_napirendipont">Új napirendi pont</a>
-            <a class="btn" id="uj_felszolalas">Új felszólalás</a>
-            <a class="btn" id="uj_szavazas">Új szavazás</a>
+            <a class="btn uj_jegyzokonyvelem" data-tipus="napirendipont">Új napirendi pont</a>
+            <a class="btn uj_jegyzokonyvelem" data-tipus="felszolalas">Új felszólalás</a>
+            <a class="btn uj_jegyzokonyvelem" data-tipus="szavazas">Új szavazás</a>
         </div>
     </div>
 
@@ -48,10 +41,15 @@
         <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_index") }}">mégsem</a>
     </div>
 </form>
+
+{% include "SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:_elem_templatek.html.twig" %}
 {% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
 <script src="{{ asset("/js/jquery-ui-1.10.2.custom.min.js") }}"></script>
 <script src="{{ asset("/js/jegyzokonyv_form.js") }}"></script>
+<script>
+    var $kovetkezo_elem = {{ kovetkezo_elem|default(0) }};
+</script>
 {% endblock %}

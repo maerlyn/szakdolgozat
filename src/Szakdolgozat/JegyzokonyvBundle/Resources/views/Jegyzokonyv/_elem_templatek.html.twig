@@ -1,0 +1,15 @@
+{% from "SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:_elem_macrok.html.twig" import felszolalas, napirendipont, szavazas %}
+
+<div class="hidden">
+    <div id="felszolalas_template">
+        {{ felszolalas("IDE_JON_AZ_ID", templatek.felszolalas) }}
+    </div>
+
+    <div id="napirendipont_template">
+        {{ napirendipont("IDE_JON_AZ_ID", templatek.napirendipont) }}
+    </div>
+
+    <div id="szavazas_template">
+        {{ szavazas("IDE_JON_AZ_ID", templatek.szavazas) }}
+    </div>
+</div>

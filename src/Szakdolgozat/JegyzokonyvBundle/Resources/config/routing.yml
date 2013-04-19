@@ -4,4 +4,12 @@ szakdolgozat_jegyzokonyv_jegyzokonyv_index:
 
 szakdolgozat_jegyzokonyv_jegyzokonyv_new:
     pattern:    /uj
-    defaults:   { _controller: SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:new }
+    defaults:   { _controller: SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:newGet }
+    requirements:
+        _method: GET
+
+szakdolgozat_jegyzokonyv_jegyzokonyv_new_post:
+    pattern:    /uj
+    defaults:   { _controller: SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:newPost }
+    requirements:
+        _method: POST

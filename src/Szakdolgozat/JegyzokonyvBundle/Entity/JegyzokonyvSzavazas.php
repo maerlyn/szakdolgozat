@@ -219,4 +219,13 @@ class JegyzokonyvSzavazas extends JegyzokonyvElem
     {
         return $this->jegyzokonyv;
     }
+
+    public function fromArray(array $data)
+    {
+        $this->cim          =   $data["cim"];
+        $this->mellette     =   $data["mellette"];
+        $this->ellene       =   $data["ellene"];
+        $this->tartozkodott =   $data["tartozkodott"];
+        $this->ervenytelen  =   $data["ervenytelen"];
+    }
 }

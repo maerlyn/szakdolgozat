@@ -1,0 +1,27 @@
+{% macro felszolalas(id, form) %}
+    <div class="jegyzokonyvelem felszolalas">
+        <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
+        {{ form_widget(form.tipus, { "full_name": "elemek[" ~ id ~ "][tipus]" }) }}
+        {{ form_row(form.szoveg, { "full_name": "elemek[" ~ id ~ "][szoveg]" }) }}
+    </div>
+{% endmacro %}
+
+{% macro napirendipont(id, form) %}
+    <div class="jegyzokonyvelem napirendipont">
+        <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
+        {{ form_widget(form.tipus, { "full_name": "elemek[" ~ id ~ "][tipus]" }) }}
+        {{ form_row(form.cim, { "full_name": "elemek[" ~ id ~ "][cim]" }) }}
+    </div>
+{% endmacro %}
+
+{% macro szavazas(id, form) %}
+    <div class="jegyzokonyvelem szavazas">
+        <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
+        {{ form_widget(form.tipus, { "full_name": "elemek[" ~ id ~ "][tipus]" }) }}
+        {{ form_row(form.cim, { "full_name": "elemek[" ~ id ~ "][cim]" }) }}
+        {{ form_row(form.mellette, { "full_name": "elemek[" ~ id ~ "][mellette]" }) }}
+        {{ form_row(form.ellene, { "full_name": "elemek[" ~ id ~ "][ellene]" }) }}
+        {{ form_row(form.tartozkodott, { "full_name": "elemek[" ~ id ~ "][tartozkodott]" }) }}
+        {{ form_row(form.ervenytelen, { "full_name": "elemek[" ~ id ~ "][ervenytelen]" }) }}
+    </div>
+{% endmacro %}
