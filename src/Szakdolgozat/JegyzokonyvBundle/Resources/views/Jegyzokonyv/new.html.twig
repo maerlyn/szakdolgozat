@@ -14,23 +14,31 @@
     {{ form_row(form.helyszin) }}
 
     <div id="jegyzokonyv_elemek">
-        <div class="felszolalas">
-            <div class="closebtn"><a href="#">x</a></div>
+        <div class="jegyzokonyvelem felszolalas">
+            <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
             {{ form_row(templatek.felszolalas.szoveg) }}
         </div>
 
-        <div class="napirendipont">
-            <div class="closebtn"><a href="#">x</a></div>
+        <div class="jegyzokonyvelem napirendipont">
+            <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
             {{ form_row(templatek.napirendipont.cim) }}
         </div>
 
-        <div class="szavazas">
-            <div class="closebtn"><a href="#">x</a></div>
+        <div class="jegyzokonyvelem szavazas">
+            <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
             {{ form_row(templatek.szavazas.cim) }}
             {{ form_row(templatek.szavazas.mellette) }}
             {{ form_row(templatek.szavazas.ellene) }}
             {{ form_row(templatek.szavazas.tartozkodott) }}
             {{ form_row(templatek.szavazas.ervenytelen) }}
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+            <a class="btn" id="uj_napirendipont">Új napirendi pont</a>
+            <a class="btn" id="uj_felszolalas">Új felszólalás</a>
+            <a class="btn" id="uj_szavazas">Új szavazás</a>
         </div>
     </div>
 
@@ -40,4 +48,10 @@
         <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_index") }}">mégsem</a>
     </div>
 </form>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset("/js/jquery-ui-1.10.2.custom.min.js") }}"></script>
+<script src="{{ asset("/js/jegyzokonyv_form.js") }}"></script>
 {% endblock %}
