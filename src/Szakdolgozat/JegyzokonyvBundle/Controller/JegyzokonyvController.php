@@ -45,7 +45,7 @@ class JegyzokonyvController extends Controller
 
         $jegyzokonyv_form->bind($request);
 
-        $request_elemek = $request->request->get("elemek");
+        $request_elemek = $request->request->get("elemek", array());
         $elemek = array();
         $minden_elem_valid = true;
         $kovetkezo_elem = 0;
