@@ -1,5 +1,5 @@
 {% macro felszolalas(id, form) %}
-    <div class="jegyzokonyvelem felszolalas">
+    <div class="jegyzokonyvelem felszolalas" data-id="{{ id }}">
         <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
         {{ form_widget(form.tipus, { "full_name": "elemek[" ~ id ~ "][tipus]" }) }}
         {{ form_row(form.szoveg, { "full_name": "elemek[" ~ id ~ "][szoveg]" }) }}
@@ -7,7 +7,7 @@
 {% endmacro %}
 
 {% macro napirendipont(id, form) %}
-    <div class="jegyzokonyvelem napirendipont">
+    <div class="jegyzokonyvelem napirendipont" data-id={{ id }}>
         <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
         {{ form_widget(form.tipus, { "full_name": "elemek[" ~ id ~ "][tipus]" }) }}
         {{ form_row(form.cim, { "full_name": "elemek[" ~ id ~ "][cim]" }) }}
@@ -15,7 +15,7 @@
 {% endmacro %}
 
 {% macro szavazas(id, form) %}
-    <div class="jegyzokonyvelem szavazas">
+    <div class="jegyzokonyvelem szavazas" data-id={{ id }}>
         <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
         {{ form_widget(form.tipus, { "full_name": "elemek[" ~ id ~ "][tipus]" }) }}
         {{ form_row(form.cim, { "full_name": "elemek[" ~ id ~ "][cim]" }) }}

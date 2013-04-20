@@ -7,6 +7,13 @@ $(document).ready(function () {
     $(document).on("click", ".closebtn", function (e) {
         e.preventDefault();
 
+        var $id = $(this).closest(".jegyzokonyvelem").data("id");
+
+        if ($id > 0) {
+            var $input = $("<input type='hidden' name='toroltelemek[]' />").attr("value", $id);
+            $("#jegyzokonyv_elemek").closest("form").append($input);
+        }
+
         $(this).closest(".jegyzokonyvelem").remove();
     });
 
