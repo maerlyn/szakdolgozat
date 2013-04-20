@@ -2,6 +2,8 @@ parameters:
 #    szakdolgozat_jegyzokony.example.class: Szakdolgozat\JegyzokonyBundle\Example
 
 services:
-#    szakdolgozat_jegyzokony.example:
-#        class: %szakdolgozat_jegyzokony.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    szakdolgozat.jegyzokonyv.jegyzokonyv_param_converter:
+        class: Szakdolgozat\JegyzokonyvBundle\Request\ParamConverter\JegyzokonyvParamConverter
+        arguments: [@doctrine.orm.default_entity_manager]
+        tags:
+            - { name: "request.param_converter", priority: 100 }

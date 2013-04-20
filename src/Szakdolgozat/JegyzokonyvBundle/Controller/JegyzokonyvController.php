@@ -24,17 +24,13 @@ class JegyzokonyvController extends Controller
         ));
     }
 
-    public function newGetAction(Request $request)
+    public function newGetAction()
     {
         $form = $this->createForm(new JegyzokonyvType());
 
         return $this->render("SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:new.html.twig", array(
             "form"      =>  $form->createView(),
-            "templatek" =>  array(
-                "felszolalas"   =>  $this->createForm(new FelszolalasType())->createView(),
-                "napirendipont" =>  $this->createForm(new NapirendiPontType())->createView(),
-                "szavazas"      =>  $this->createForm(new SzavazasType())->createView(),
-            ),
+            "templatek" =>  $this->elemTemplatek(),
         ));
     }
 
@@ -105,14 +101,25 @@ class JegyzokonyvController extends Controller
         }
 
         return $this->render("SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:new.html.twig", array(
-            "form"      =>  $jegyzokonyv_form->createView(),
-            "elemek"    =>  $elemek,
+            "form"              =>  $jegyzokonyv_form->createView(),
+            "elemek"            =>  $elemek,
             "kovetkezo_elem"    =>  $kovetkezo_elem,
-            "templatek" =>  array(
-                "felszolalas"   =>  $this->createForm(new FelszolalasType())->createView(),
-                "napirendipont" =>  $this->createForm(new NapirendiPontType())->createView(),
-                "szavazas"      =>  $this->createForm(new SzavazasType())->createView(),
-            ),
+            "templatek"         =>  $this->elemTemplatek(),
         ));
+    }
+
+    public function editAction(Jegyzokonyv $jegyzokonyv, Request $request)
+    {
+        var_dump($jegyzokonyv->getElemek());
+        die();
+    }
+
+    protected function elemTemplatek()
+    {
+        return array(
+            "felszolalas"   =>  $this->createForm(new FelszolalasType())->createView(),
+            "napirendipont" =>  $this->createForm(new NapirendiPontType())->createView(),
+            "szavazas"      =>  $this->createForm(new SzavazasType())->createView(),
+        );
     }
 }

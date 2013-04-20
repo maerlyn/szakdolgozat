@@ -8,7 +8,6 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>ID</th>
             <th>Név</th>
             <th>Dátum</th>
             <th>Jegyzőkönyvíró</th>
@@ -18,11 +17,14 @@
     <tbody>
     {% for j in jegyzokonyvek %}
         <tr>
-            <td>{{ j.id }}</td>
             <td>{{ j.nev }}</td>
             <td>{{ j.datum|date("Y. m. d. H:i") }}</td>
             <td>{{ j.jegyzokonyviro.nev }}</td>
-            <td></td>
+            <td>
+            {% if j.jegyzokonyviro == app.user %}
+                <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_edit", { "id": j.id }) }}">szerkesztés</a>
+            {% endif %}
+            </td>
         </tr>
     {% endfor %}
     </tbody>
