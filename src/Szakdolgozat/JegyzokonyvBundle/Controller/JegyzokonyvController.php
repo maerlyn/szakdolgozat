@@ -110,8 +110,43 @@ class JegyzokonyvController extends Controller
 
     public function editAction(Jegyzokonyv $jegyzokonyv, Request $request)
     {
-        var_dump($jegyzokonyv->getElemek());
-        die();
+        $jegyzokonyv_form = $this->createForm(new JegyzokonyvType(), $jegyzokonyv);
+        $elemek = array();
+
+        foreach ($jegyzokonyv->getElemek() as $elem) {
+            if ($elem instanceof JegyzokonyvFelszolalas) {
+                $tipus = "felszolalas";
+                $form  = $this->createForm(new FelszolalasType(), $elem);
+            }
+            elseif ($elem instanceof JegyzokonyvNapirendiPont) {
+                $tipus = "napirendipont";
+                $form  = $this->createForm(new NapirendiPontType(), $elem);
+            }
+            else {
+                $tipus = "szavazas";
+                $form  = $this->createForm(new SzavazasType(), $elem);
+            }
+
+            $elemek[] = array(
+                "id"    =>  $elem->getId(),
+                "tipus" =>  $tipus,
+                "form"  =>  $form,
+            );
+        }
+
+        // itt jon majd a validalas
+
+        // valami nem stimm, ujra mutatjuk a templatet
+
+        foreach ($elemek as $k => $v) {
+            $elemek[$k]["form"] = $v["form"]->createView();
+        }
+
+        return $this->render("SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:edit.html.twig", array(
+            "form"      =>  $jegyzokonyv_form->createView(),
+            "elemek"    =>  $elemek,
+            "templatek" =>  $this->elemTemplatek(),
+        ));
     }
 
     protected function elemTemplatek()

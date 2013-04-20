@@ -1,0 +1,37 @@
+{% from "SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:_elem_macrok.html.twig" import felszolalas, napirendipont, szavazas %}
+<form action="{{ app.request.requesturi }}" method="post" class="form-horizontal" {{ form_enctype(form) }} novalidate="novalidate">
+    {{ form_row(form.nev) }}
+    {{ form_row(form.hitelesito_1) }}
+    {{ form_row(form.hitelesito_2) }}
+    {{ form_row(form.nev) }}
+    {{ form_row(form.datum) }}
+    {{ form_row(form.helyszin) }}
+
+    <div id="jegyzokonyv_elemek">
+        {% for elem in elemek|default([]) %}
+            {% if elem.tipus == "felszolalas" %}
+                {{ felszolalas(elem.id, elem.form) }}
+            {% elseif elem.tipus == "napirendipont" %}
+                {{ napirendipont(elem.id, elem.form) }}
+            {% else %}
+                {{ szavazas(elem.id, elem.form) }}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+            <a class="btn uj_jegyzokonyvelem" data-tipus="napirendipont">Új napirendi pont</a>
+            <a class="btn uj_jegyzokonyvelem" data-tipus="felszolalas">Új felszólalás</a>
+            <a class="btn uj_jegyzokonyvelem" data-tipus="szavazas">Új szavazás</a>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        {{ form_widget(form._token) }}
+        <input type="submit" value="Mentés" class="btn btn-primary" />
+        <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_index") }}">mégsem</a>
+    </div>
+</form>
+
+{% include "SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:_elem_templatek.html.twig" %}

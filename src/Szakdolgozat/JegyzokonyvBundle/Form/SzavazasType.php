@@ -11,7 +11,7 @@ class SzavazasType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add("tipus", "hidden", array("data" => "szavazas"));
+        $builder->add("tipus", "hidden", array("data" => "szavazas", "mapped" => false));
 
         $builder->add("cim", "text", array(
             "label"         =>  "Cím",

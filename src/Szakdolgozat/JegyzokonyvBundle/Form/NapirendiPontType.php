@@ -11,7 +11,7 @@ class NapirendiPontType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add("tipus", "hidden", array("data" => "napirendipont"));
+        $builder->add("tipus", "hidden", array("data" => "napirendipont", "mapped" => false));
 
         $builder->add("cim", "text", array(
             "label"         =>  "Cím",

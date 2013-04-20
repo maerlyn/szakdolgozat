@@ -11,7 +11,7 @@ class FelszolalasType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add("tipus", "hidden", array("data" => "felszolalas"));
+        $builder->add("tipus", "hidden", array("data" => "felszolalas", "mapped" => false));
 
         $builder->add("szoveg", "textarea", array(
             "label"         =>  "Szöveg",
