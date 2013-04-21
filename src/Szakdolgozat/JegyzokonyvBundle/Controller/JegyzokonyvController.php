@@ -90,8 +90,9 @@ class JegyzokonyvController extends Controller
             }
 
             $em->persist($jegyzokonyv);
-
             $em->flush();
+            
+            return $this->redirect($this->generateUrl("szakdolgozat_jegyzokonyv_jegyzokonyv_index"));
         }
 
         // invalid valami, ujra mutatni a formot
