@@ -34,7 +34,7 @@ class JegyzokonyvController extends Controller
         ));
     }
 
-    public function newPostAction(Request $request, Jegyzokonyv $jegyzokonyv = null)
+    public function newPostAction(Request $request)
     {
         $jegyzokonyv = new Jegyzokonyv();
         $jegyzokonyv_form = $this->createForm(new JegyzokonyvType(), $jegyzokonyv);
