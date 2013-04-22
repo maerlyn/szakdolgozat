@@ -253,6 +253,13 @@ class Jegyzokonyv
         return $this;
     }
 
+    public function clearElemek()
+    {
+        $this->elemek = new ArrayCollection();
+
+        return $this;
+    }
+
     /**
      * Remove elemek
      *

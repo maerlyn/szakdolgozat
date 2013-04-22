@@ -135,7 +135,97 @@ class JegyzokonyvController extends Controller
             );
         }
 
-        // itt jon majd a validalas
+        if ($request->isMethod("post")) {
+            $jegyzokonyv_form->bind($request);
+
+            $request_elemek = $request->request->get("elemek", array());
+            $elemek = array();
+            $minden_elem_valid = true;
+            $kovetkezo_elem = 0;
+
+            foreach ($request_elemek as $k => $request_elem) {
+                if ($k < 0) { // uj elem
+                    switch ($request_elem["tipus"]) {
+                        case "felszolalas":   $form = $this->createForm(new FelszolalasType());   break;
+                        case "napirendipont": $form = $this->createForm(new NapirendiPontType()); break;
+                        case "szavazas":      $form = $this->createForm(new SzavazasType());      break;
+                    }
+                } else { // letezo elem
+                    switch ($request_elem["tipus"]) {
+                        case "felszolalas":
+                            $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvFelszolalas")->find($k);
+                            $form = $this->createForm(new FelszolalasType(), $obj);
+                            break;
+                        case "napirendipont":
+                            $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvNapirendiPont")->find($k);
+                            $form = $this->createForm(new NapirendiPontType(), $obj);
+                            break;
+                        case "szavazas":
+                            $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvSzakdolgozat")->find($k);
+                            $form = $this->createForm(new SzavazasType(), $obj);
+                            break;
+                    }
+                }
+
+                // tehat megvannak a formjaink
+                $form->bind($request_elem);
+
+                $elemek[] = array(
+                    "id"    =>  $k,
+                    "tipus" =>  $request_elem["tipus"],
+                    "form"  =>  $form,
+                );
+
+                $minden_elem_valid &= $form->isValid();
+                if ($kovetkezo_elem > $k) $kovetkezo_elem = $k;
+            }
+
+            if ($minden_elem_valid && $jegyzokonyv_form->isValid()) {
+                $pozicio = 1;
+                $em = $this->getDoctrine()->getManager();
+                $jegyzokonyv->clearElemek();
+
+                foreach ($elemek as $elem) {
+                    switch ($elem["tipus"]) {
+                        case "felszolalas":
+                            $obj = $elem["id"] < 0
+                                ? new JegyzokonyvFelszolalas()
+                                : $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvFelszolalas")->find($elem["id"]);
+                            break;
+                        case "napirendipont":
+                            $obj = $elem["id"] < 0
+                                ? new JegyzokonyvNapirendiPont()
+                                : $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvNapirendiPont")->find($elem["id"]);
+                            break;
+                        case "szavazas":
+                            $obj = $elem["id"] < 0
+                                ? new JegyzokonyvSzavazas()
+                                : $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvSzavazas")->find($elem["id"]);
+                            break;
+                    }
+
+                    $data = $elem["form"]->getData();
+                    if (is_array($data)) $obj->fromArray($data);
+                    $obj->setPozicio($pozicio++);
+
+                    $obj->setJegyzokonyv($jegyzokonyv);
+                    $em->persist($obj);
+                    $jegyzokonyv->addElemek($obj);
+                }
+
+                // torlendoek torlese
+                $torolt_elemek = $request->request->get("toroltelemek", array());
+                foreach ($torolt_elemek as $torolt_elem_id) {
+                    $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvElem")->find($torolt_elem_id);
+                    $em->remove($obj);
+                }
+
+                $em->persist($jegyzokonyv);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl("szakdolgozat_jegyzokonyv_jegyzokonyv_index"));
+            }
+        }
 
         // valami nem stimm, ujra mutatjuk a templatet
 
