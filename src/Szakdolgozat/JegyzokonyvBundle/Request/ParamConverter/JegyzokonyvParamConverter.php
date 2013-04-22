@@ -21,8 +21,7 @@ class JegyzokonyvParamConverter implements ParamConverterInterface
     {
         $id = $request->attributes->get("id");
 
-        $dql = 'SELECT j, e FROM Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv j
-          INNER JOIN j.elemek e WHERE j.id = ?1';
+        $dql = 'SELECT j FROM Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv j WHERE j.id = ?1';
 
         $j = $this->entityManager
             ->createQuery($dql)
