@@ -80,6 +80,10 @@ class UlesController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
+        foreach ($ules->getDokumentumok() as $dok) {
+            $em->remove($dok);
+        }
+
         $em->remove($ules);
         $em->flush();
 
