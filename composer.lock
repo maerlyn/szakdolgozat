@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "2b90b2b7b77a5fe5592fe51c7efb6f69",
+    "hash": "bb037251d4a62be3b2063c37c647f72c",
     "packages": [
         {
             "name": "doctrine/common",
@@ -749,6 +749,48 @@
                 "logging"
             ],
             "time": "2012-08-29 04:53:20"
+        },
+        {
+            "name": "mpdf/mpdf",
+            "version": "v5.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/finwe/mpdf.git",
+                "reference": "v5.6.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/finwe/mpdf/zipball/v5.6.1",
+                "reference": "v5.6.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=4.3.10"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "mpdf.php",
+                    "classes"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-1.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Ian Back"
+                }
+            ],
+            "description": "A PHP class to generate PDF files from HTML with Unicode/UTF-8 and CJK support",
+            "homepage": "http://www.mpdf1.com/mpdf/index.php",
+            "keywords": [
+                "pdf",
+                "php",
+                "utf-8"
+            ],
+            "time": "2013-01-26 08:22:27"
         },
         {
             "name": "sensio/distribution-bundle",
