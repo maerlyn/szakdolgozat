@@ -58,6 +58,7 @@ class Jegyzokonyv
 
     /**
      * @ORM\OneToMany(targetEntity="JegyzokonyvElem", mappedBy="jegyzokonyv")
+     * @ORM\OrderBy({"pozicio"="ASC"})
      */
     protected $elemek;
 
