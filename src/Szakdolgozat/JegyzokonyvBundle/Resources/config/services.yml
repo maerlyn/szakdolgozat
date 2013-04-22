@@ -10,3 +10,4 @@ services:
 
     szakdolgozat.jegyzokonyv.export.pdf:
         class: Szakdolgozat\JegyzokonyvBundle\Export\Pdf
+        arguments: [@templating]
