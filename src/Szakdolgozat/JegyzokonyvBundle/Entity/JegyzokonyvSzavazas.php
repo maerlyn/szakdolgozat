@@ -228,4 +228,9 @@ class JegyzokonyvSzavazas extends JegyzokonyvElem
         $this->tartozkodott =   $data["tartozkodott"];
         $this->ervenytelen  =   $data["ervenytelen"];
     }
+
+    public function tipus()
+    {
+        return "szavazas";
+    }
 }

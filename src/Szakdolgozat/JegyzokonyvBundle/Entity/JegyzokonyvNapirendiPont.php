@@ -112,4 +112,9 @@ class JegyzokonyvNapirendiPont extends JegyzokonyvElem
     {
         $this->cim = $data["cim"];
     }
+
+    public function tipus()
+    {
+        return "napirendipont";
+    }
 }

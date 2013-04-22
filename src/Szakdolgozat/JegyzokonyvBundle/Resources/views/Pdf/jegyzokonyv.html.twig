@@ -1,0 +1,30 @@
+<html>
+<head>
+    <style>
+        div {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin: 0 auto; text-align: center">
+        <b style="font-size: 26px">{{ jegyzokonyv.nev }}</b><br />
+        <span style="font-size: 18px">{{ jegyzokonyv.datum|date("Y. m. d.") }}</span>
+    </div>
+
+    <div>
+        <b>Ülés kezdete:</b> {{ jegyzokonyv.datum|date("H:i") }}<br />
+        <b>Ülés helyszíne:</b> {{ jegyzokonyv.helyszin }}<br />
+        <b>Szavazati jogú tagok száma: </b> TODO fő<br />
+        <b>Jegyzőkönyv írója:</b> {{ jegyzokonyv.jegyzokonyviro.nev }}<br />
+        <b>Jegyzőkönyv hitelesítők:</b> {{ jegyzokonyv.hitelesito1.nev }}, {{ jegyzokonyv.hitelesito2.nev }}<br />
+        <b>Az ülés határozatképes:</b> TODO szavazati jogú tagból TODO jelen van<br />
+    </div>
+
+    {% for elem in jegyzokonyv.elemek %}
+    <div>
+        {% include "SzakdolgozatJegyzokonyvBundle:Pdf:_" ~ elem.tipus ~ ".html.twig" with { "elem": elem } %}
+    </div>
+    {% endfor %}
+</body>
+</html>

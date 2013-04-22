@@ -112,4 +112,9 @@ class JegyzokonyvFelszolalas extends JegyzokonyvElem
     {
         $this->szoveg = $data["szoveg"];
     }
+
+    public function tipus()
+    {
+        return "felszolalas";
+    }
 }
