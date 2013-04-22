@@ -24,6 +24,9 @@
             {% if j.jegyzokonyviro == app.user %}
                 <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_edit", { "id": j.id }) }}">szerkesztés</a>
             {% endif %}
+            {% if j.jegyzokonyviro == app.user or is_granted(ROLE_ADMINISZTRATOR) %}
+                <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_pdf", { "id": j.id }) }}">PDF</a>
+            {% endif %}
             </td>
         </tr>
     {% endfor %}

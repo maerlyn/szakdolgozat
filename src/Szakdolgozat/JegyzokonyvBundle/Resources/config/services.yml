@@ -7,3 +7,6 @@ services:
         arguments: [@doctrine.orm.default_entity_manager]
         tags:
             - { name: "request.param_converter", priority: 100 }
+
+    szakdolgozat.jegyzokonyv.export.pdf:
+        class: Szakdolgozat\JegyzokonyvBundle\Export\Pdf

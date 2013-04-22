@@ -4,6 +4,7 @@ namespace Szakdolgozat\JegyzokonyvBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv;
 use Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvFelszolalas;
 use Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvNapirendiPont;
@@ -238,6 +239,15 @@ class JegyzokonyvController extends Controller
             "elemek"    =>  $elemek,
             "templatek" =>  $this->elemTemplatek(),
         ));
+    }
+
+    public function pdfAction(Jegyzokonyv $jegyzokonyv)
+    {
+        $exporter = $this->get("szakdolgozat.jegyzokonyv.export.pdf");
+
+        $exporter->jegyzokonyv($jegyzokonyv);
+        //az elozo sor visszaadja a usernek
+        die();
     }
 
     protected function elemTemplatek()
