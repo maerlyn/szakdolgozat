@@ -161,7 +161,7 @@ class JegyzokonyvController extends Controller
                             $form = $this->createForm(new NapirendiPontType(), $obj);
                             break;
                         case "szavazas":
-                            $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvSzakdolgozat")->find($k);
+                            $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvSzavazas")->find($k);
                             $form = $this->createForm(new SzavazasType(), $obj);
                             break;
                     }
