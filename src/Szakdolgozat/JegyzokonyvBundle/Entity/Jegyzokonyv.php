@@ -50,6 +50,21 @@ class Jegyzokonyv
     protected $helyszin;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $ules_hatarozatkepes;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $szavazati_jogu_tagok_szama;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $jelen_levo_szavazati_joguak;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo")
      * @ORM\JoinColumn(name="hitelesito_1_id", referencedColumnName="id")
      */
@@ -306,5 +321,74 @@ class Jegyzokonyv
     public function getUlesVege()
     {
         return $this->ules_vege;
+    }
+
+    /**
+     * Set ules_hatarozatkepes
+     *
+     * @param boolean $ulesHatarozatkepes
+     * @return Jegyzokonyv
+     */
+    public function setUlesHatarozatkepes($ulesHatarozatkepes)
+    {
+        $this->ules_hatarozatkepes = $ulesHatarozatkepes;
+    
+        return $this;
+    }
+
+    /**
+     * Get ules_hatarozatkepes
+     *
+     * @return boolean 
+     */
+    public function getUlesHatarozatkepes()
+    {
+        return $this->ules_hatarozatkepes;
+    }
+
+    /**
+     * Set szavazati_jogu_tagok_szama
+     *
+     * @param integer $szavazatiJoguTagokSzama
+     * @return Jegyzokonyv
+     */
+    public function setSzavazatiJoguTagokSzama($szavazatiJoguTagokSzama)
+    {
+        $this->szavazati_jogu_tagok_szama = $szavazatiJoguTagokSzama;
+    
+        return $this;
+    }
+
+    /**
+     * Get szavazati_jogu_tagok_szama
+     *
+     * @return integer 
+     */
+    public function getSzavazatiJoguTagokSzama()
+    {
+        return $this->szavazati_jogu_tagok_szama;
+    }
+
+    /**
+     * Set jelen_levo_szavazati_joguak
+     *
+     * @param integer $jelenLevoSzavazatiJoguak
+     * @return Jegyzokonyv
+     */
+    public function setJelenLevoSzavazatiJoguak($jelenLevoSzavazatiJoguak)
+    {
+        $this->jelen_levo_szavazati_joguak = $jelenLevoSzavazatiJoguak;
+    
+        return $this;
+    }
+
+    /**
+     * Get jelen_levo_szavazati_joguak
+     *
+     * @return integer 
+     */
+    public function getJelenLevoSzavazatiJoguak()
+    {
+        return $this->jelen_levo_szavazati_joguak;
     }
 }

@@ -49,6 +49,18 @@ class JegyzokonyvType extends AbstractType
             "label"         =>  "Hitelesítő 2",
             "class"         =>  "SzakdolgozatFelhasznaloBundle:Felhasznalo",
         ));
+
+        $builder->add("ules_hatarozatkepes", "checkbox", array(
+            "label"         =>  "Az ülés határozatképes",
+        ));
+
+        $builder->add("szavazati_jogu_tagok_szama", "integer", array(
+            "label"         =>  "Szavazati jogú tagok száma",
+        ));
+
+        $builder->add("jelen_levo_szavazati_joguak", "integer", array(
+            "label"         =>  "Jelen levő szavazati jogú tagok száma",
+        ));
     }
 
 

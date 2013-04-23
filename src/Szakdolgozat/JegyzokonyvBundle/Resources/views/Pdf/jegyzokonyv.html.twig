@@ -15,10 +15,12 @@
     <div>
         <b>Ülés kezdete:</b> {{ jegyzokonyv.datum|date("H:i") }}<br />
         <b>Ülés helyszíne:</b> {{ jegyzokonyv.helyszin }}<br />
-        <b>Szavazati jogú tagok száma: </b> TODO fő<br />
+        <b>Szavazati jogú tagok száma: </b> {{ jegyzokonyv.szavazatiJoguTagokSzama }} fő<br />
         <b>Jegyzőkönyv írója:</b> {{ jegyzokonyv.jegyzokonyviro.nev }}<br />
         <b>Jegyzőkönyv hitelesítők:</b> {{ jegyzokonyv.hitelesito1.nev }}, {{ jegyzokonyv.hitelesito2.nev }}<br />
-        <b>Az ülés határozatképes:</b> TODO szavazati jogú tagból TODO jelen van<br />
+        <b>Az ülés{% if not jegyzokonyv.ulesHatarozatkepes %} nem{% endif  %} határozatképes:</b>
+            {{ jegyzokonyv.szavazatiJoguTagokSzama }} szavazati jogú
+            tagból {{ jegyzokonyv.jelenLevoSzavazatiJoguak }} jelen van<br />
     </div>
 
     <b style="font-size: 22px;"><u>Napirendi pontok:</u></b>
@@ -44,7 +46,10 @@
     </p>
 
     <br /><br /><br />
-    <table border="0" style="margin: 0 auto; width: 70%; text-align: center;">
+    <table border="0" style="margin: 0 auto; width: 70%; text-align: center; page-break-inside: avoid;">
+        <tr>
+            <td colspan="3" height="40">&nbsp;</td>
+        </tr>
         <tr>
             <td></td>
             <td style="border-top: 1px solid black;">
@@ -54,7 +59,7 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="3" height=40></td>
+            <td colspan="3" height="40">&nbsp;</td>
         </tr>
         <tr>
             <td style="border-top: 1px solid black;">
