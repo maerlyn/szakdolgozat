@@ -13,6 +13,10 @@ class FelszolalasType extends AbstractType
     {
         $builder->add("tipus", "hidden", array("data" => "felszolalas", "mapped" => false));
 
+        $builder->add("eloterjeszto", "text", array(
+            "label"         =>  "Előterjesztő",
+        ));
+
         $builder->add("szoveg", "textarea", array(
             "label"         =>  "Szöveg",
             "constraints"   =>  new Assert\NotBlank(),

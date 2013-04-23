@@ -2,6 +2,7 @@
     <div class="jegyzokonyvelem felszolalas" data-id="{{ id }}">
         <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
         {{ form_widget(form.tipus, { "full_name": "elemek[" ~ id ~ "][tipus]" }) }}
+        {{ form_row(form.eloterjeszto, { "full_name": "elemek[" ~ id ~ "][eloterjeszto]" }) }}
         {{ form_row(form.szoveg, { "full_name": "elemek[" ~ id ~ "][szoveg]" }) }}
     </div>
 {% endmacro %}
@@ -10,6 +11,7 @@
     <div class="jegyzokonyvelem napirendipont" data-id={{ id }}>
         <div class="closebtn"><a href="#" title="Elem törlése">x</a></div>
         {{ form_widget(form.tipus, { "full_name": "elemek[" ~ id ~ "][tipus]" }) }}
+        {{ form_row(form.eloterjeszto, { "full_name": "elemek[" ~ id ~ "][eloterjeszto]" }) }}
         {{ form_row(form.cim, { "full_name": "elemek[" ~ id ~ "][cim]" }) }}
     </div>
 {% endmacro %}

@@ -21,10 +21,52 @@
         <b>Az ülés határozatképes:</b> TODO szavazati jogú tagból TODO jelen van<br />
     </div>
 
+    <b style="font-size: 22px;"><u>Napirendi pontok:</u></b>
+    <ol>
+    {% for elem in jegyzokonyv.elemek if elem.tipus == "napirendipont" %}
+        <li>
+            <b>{{ elem.cim }}</b>
+            {% if elem.eloterjeszto %}
+            <br />Előterjesztő: {{ elem.eloterjeszto }}
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ol>
+
     {% for elem in jegyzokonyv.elemek %}
     <div>
         {% include "SzakdolgozatJegyzokonyvBundle:Pdf:_" ~ elem.tipus ~ ".html.twig" with { "elem": elem } %}
     </div>
     {% endfor %}
+
+    <p>
+        <b>Ülés zárása:</b> {{ jegyzokonyv.ulesVege|date("H:i") }}
+    </p>
+
+    <br /><br /><br />
+    <table border="0" style="margin: 0 auto; width: 70%; text-align: center;">
+        <tr>
+            <td></td>
+            <td style="border-top: 1px solid black;">
+                {{ jegyzokonyv.jegyzokonyviro.nev }}<br />
+                jegyzőkönyvíró
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3" height=40></td>
+        </tr>
+        <tr>
+            <td style="border-top: 1px solid black;">
+                {{ jegyzokonyv.hitelesito1.nev }}<br />
+                hitelesítő
+            </td>
+            <td></td>
+            <td style="border-top: 1px solid black;">
+                {{ jegyzokonyv.hitelesito2.nev }}<br />
+                hitelesítő
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

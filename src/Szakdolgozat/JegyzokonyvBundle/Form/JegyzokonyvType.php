@@ -26,6 +26,15 @@ class JegyzokonyvType extends AbstractType
             ),
         ));
 
+        $builder->add("ules_vege", "time", array(
+            "label"         =>  "Ülés vége",
+            "with_seconds"  =>  false,
+            "constraints"   =>  array(
+                new Assert\NotBlank(),
+                new Assert\Time(),
+            ),
+        ));
+
         $builder->add("helyszin", "text", array(
             "label"         =>  "Helyszín",
             "constraints"   =>  new Assert\NotBlank(),

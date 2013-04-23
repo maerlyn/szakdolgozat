@@ -10,9 +10,15 @@ use Doctrine\ORM\Mapping as ORM;
 class JegyzokonyvFelszolalas extends JegyzokonyvElem
 {
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $eloterjeszto;
+
+    /**
      * @ORM\Column(type="text")
      */
     protected $szoveg;
+
     /**
      * @var integer
      */
@@ -110,11 +116,35 @@ class JegyzokonyvFelszolalas extends JegyzokonyvElem
 
     public function fromArray(array $data)
     {
-        $this->szoveg = $data["szoveg"];
+        $this->eloterjeszto = $data["eloterjeszto"];
+        $this->szoveg       = $data["szoveg"];
     }
 
     public function tipus()
     {
         return "felszolalas";
+    }
+
+    /**
+     * Set eloterjeszto
+     *
+     * @param string $eloterjeszto
+     * @return JegyzokonyvFelszolalas
+     */
+    public function setEloterjeszto($eloterjeszto)
+    {
+        $this->eloterjeszto = $eloterjeszto;
+    
+        return $this;
+    }
+
+    /**
+     * Get eloterjeszto
+     *
+     * @return string 
+     */
+    public function getEloterjeszto()
+    {
+        return $this->eloterjeszto;
     }
 }

@@ -40,6 +40,11 @@ class Jegyzokonyv
     protected $datum;
 
     /**
+     * @ORM\Column(type="time")
+     */
+    protected $ules_vege;
+
+    /**
      * @ORM\Column(type="string", length=100)
      */
     protected $helyszin;
@@ -278,5 +283,28 @@ class Jegyzokonyv
     public function getElemek()
     {
         return $this->elemek;
+    }
+
+    /**
+     * Set ules_vege
+     *
+     * @param \DateTime $ulesVege
+     * @return Jegyzokonyv
+     */
+    public function setUlesVege($ulesVege)
+    {
+        $this->ules_vege = $ulesVege;
+    
+        return $this;
+    }
+
+    /**
+     * Get ules_vege
+     *
+     * @return \DateTime 
+     */
+    public function getUlesVege()
+    {
+        return $this->ules_vege;
     }
 }

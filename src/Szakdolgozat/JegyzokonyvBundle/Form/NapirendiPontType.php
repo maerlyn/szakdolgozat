@@ -13,6 +13,10 @@ class NapirendiPontType extends AbstractType
     {
         $builder->add("tipus", "hidden", array("data" => "napirendipont", "mapped" => false));
 
+        $builder->add("eloterjeszto", "text", array(
+            "label"         =>  "Előterjesztő",
+        ));
+
         $builder->add("cim", "text", array(
             "label"         =>  "Cím",
             "constraints"   =>  new Assert\NotBlank(),

@@ -10,9 +10,15 @@ use Doctrine\ORM\Mapping as ORM;
 class JegyzokonyvNapirendiPont extends JegyzokonyvElem
 {
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $cim;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $eloterjeszto;
+
     /**
      * @var integer
      */
@@ -27,7 +33,6 @@ class JegyzokonyvNapirendiPont extends JegyzokonyvElem
      * @var \Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv
      */
     protected $jegyzokonyv;
-
 
     /**
      * Set cim
@@ -110,11 +115,35 @@ class JegyzokonyvNapirendiPont extends JegyzokonyvElem
 
     public function fromArray(array $data)
     {
-        $this->cim = $data["cim"];
+        $this->cim          = $data["cim"];
+        $this->eloterjeszto = $data["eloterjeszto"];
     }
 
     public function tipus()
     {
         return "napirendipont";
+    }
+
+    /**
+     * Set eloterjeszto
+     *
+     * @param string $eloterjeszto
+     * @return JegyzokonyvNapirendiPont
+     */
+    public function setEloterjeszto($eloterjeszto)
+    {
+        $this->eloterjeszto = $eloterjeszto;
+    
+        return $this;
+    }
+
+    /**
+     * Get eloterjeszto
+     *
+     * @return string 
+     */
+    public function getEloterjeszto()
+    {
+        return $this->eloterjeszto;
     }
 }
