@@ -43,11 +43,13 @@ class JegyzokonyvType extends AbstractType
         $builder->add("hitelesito_1", "entity", array(
             "label"         =>  "Hitelesítő 1",
             "class"         =>  "SzakdolgozatFelhasznaloBundle:Felhasznalo",
+            "group_by"      =>  "szervezeti_egyseg",
         ));
 
         $builder->add("hitelesito_2", "entity", array(
             "label"         =>  "Hitelesítő 2",
             "class"         =>  "SzakdolgozatFelhasznaloBundle:Felhasznalo",
+            "group_by"      =>  "szervezeti_egyseg",
         ));
 
         $builder->add("ules_hatarozatkepes", "checkbox", array(
