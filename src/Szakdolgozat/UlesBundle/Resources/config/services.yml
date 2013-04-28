@@ -10,3 +10,9 @@ services:
         arguments: [@doctrine.orm.default_entity_manager]
         tags:
             - { name: "request.param_converter", priority: 100 }
+
+    szakdolgozat.ules.gcal_event_listener:
+        class: Szakdolgozat\UlesBundle\EventListener\GcalEventListener
+        arguments: [@session, "%gcal_client_id%", "%gcal_client_secret%", "%gcal_refresh_token%"]
+        tags:
+            - { name: "kernel.event_subscriber" }

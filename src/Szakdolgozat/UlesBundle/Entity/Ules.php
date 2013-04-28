@@ -67,6 +67,11 @@ class Ules
     protected $jegyzokonyv;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $gcal_event_id;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -310,5 +315,28 @@ class Ules
     public function getJegyzokonyv()
     {
         return $this->jegyzokonyv;
+    }
+
+    /**
+     * Set gcal_event_id
+     *
+     * @param string $gcalEventId
+     * @return Ules
+     */
+    public function setGcalEventId($gcalEventId)
+    {
+        $this->gcal_event_id = $gcalEventId;
+    
+        return $this;
+    }
+
+    /**
+     * Get gcal_event_id
+     *
+     * @return string 
+     */
+    public function getGcalEventId()
+    {
+        return $this->gcal_event_id;
     }
 }

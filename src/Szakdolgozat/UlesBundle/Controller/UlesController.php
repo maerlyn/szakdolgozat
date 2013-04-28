@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Szakdolgozat\UlesBundle\Entity\Ules;
+use Szakdolgozat\UlesBundle\Event\GcalEvent;
 use Szakdolgozat\UlesBundle\Form\DokumentumType;
 use Szakdolgozat\UlesBundle\Form\UlesType;
 
@@ -40,6 +41,8 @@ class UlesController extends Controller
                 $em->persist($ules);
                 $em->flush();
 
+                $this->get("event_dispatcher")->dispatch("ules.new", new GcalEvent($ules));
+
                 return $this->redirect($this->generateUrl("szakdolgozat_ules_ules_index"));
             }
         }
@@ -60,6 +63,8 @@ class UlesController extends Controller
 
             if ($form->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
+
+                $this->get("event_dispatcher")->dispatch("ules.edit", new GcalEvent($ules));
 
                 return $this->redirect($this->generateUrl("szakdolgozat_ules_ules_index"));
             }
@@ -86,6 +91,8 @@ class UlesController extends Controller
 
         $em->remove($ules);
         $em->flush();
+
+        $this->get("event_dispatcher")->dispatch("ules.delete", new GcalEvent($ules));
 
         return $this->redirect($this->generateUrl("szakdolgozat_ules_ules_index"));
     }
