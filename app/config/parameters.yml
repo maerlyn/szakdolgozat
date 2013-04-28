@@ -12,3 +12,7 @@ parameters:
     locale: hu
     secret: 21232f297a57a5a743894a0e4a801fc3
     database_path: null
+
+    gcal_client_id: 758449309528.apps.googleusercontent.com
+    gcal_client_secret: ow-WSp58tesO44eubhw6nzQO
+    gcal_refresh_token: 1/xIBM28mitPZGfiDigrYDAjhxyzSpUEOQpHfxJ3Fl6y8
