@@ -108,7 +108,17 @@ class GcalEventListener implements EventSubscriberInterface
     {}
 
     public function ulesDelete(GcalEvent $event)
-    {}
+    {
+        $ules = $event->getUles();
+
+        if (!$ules->getGcalEventId()) {
+            return;
+        }
+
+        $service = $this->getGoogleCalendarService(); /** @var \Google_CalendarService */
+
+        $service->events->delete($this->calendar_id, $ules->getGcalEventId(), array("sendNotifications" => true));
+    }
 
     public static function getSubscribedEvents()
     {
