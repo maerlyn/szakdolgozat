@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Guzzle\Http\Client;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Szakdolgozat\UlesBundle\Entity\Ules;
 use Szakdolgozat\UlesBundle\Event\GcalEvent;
 
 class GcalEventListener implements EventSubscriberInterface
@@ -29,7 +30,7 @@ class GcalEventListener implements EventSubscriberInterface
         $this->calendar_id      =   $calendar_id;
     }
 
-    public function getAccessToken()
+    private function getAccessToken()
     {
         if (!$this->session->has("gcal.access_token")) {
             $client = new Client();
@@ -51,12 +52,13 @@ class GcalEventListener implements EventSubscriberInterface
         return $this->session->get("gcal.access_token");
     }
 
-    public function getGoogleCalendarService()
+    private function getGoogleCalendarService()
     {
         $client = new \Google_Client();
         $client->setApplicationName("Szakdolgozat");
         $client->setClientId($this->client_id);
         $client->setClientSecret($this->client_secret);
+        $client->setUseObjects(true);
 
         $at = json_encode(array(
             "access_token"  =>  $this->getAccessToken(),
@@ -72,11 +74,8 @@ class GcalEventListener implements EventSubscriberInterface
         return $service;
     }
 
-    public function ulesNew(GcalEvent $event)
+    private function ulesAdatokEventbe(Ules $ules, \Google_Event $event)
     {
-        $ules = $event->getUles();
-
-        $event = new \Google_Event();
         $event->setSummary($ules->getNev());
         $event->setDescription($ules->getLeiras());
         $event->setLocation($ules->getHelyszin());
@@ -96,16 +95,38 @@ class GcalEventListener implements EventSubscriberInterface
             $attendees[] = $att;
         }
         $event->setAttendees($attendees);
+    }
+
+    public function ulesNew(GcalEvent $event)
+    {
+        $ules = $event->getUles();
+
+        $event = new \Google_Event();
+
+        $this->ulesAdatokEventbe($ules, $event);
 
         $service = $this->getGoogleCalendarService(); /** @var \Google_CalendarService */
         $created_event = $service->events->insert($this->calendar_id, $event, array("sendNotifications" => true));
 
-        $ules->setGcalEventId($created_event["id"]);
+        $ules->setGcalEventId($created_event->getId());
         $this->entity_manager->flush($ules);
     }
 
     public function ulesEdit(GcalEvent $event)
-    {}
+    {
+        $ules = $event->getUles();
+
+        if (!$ules->getGcalEventId()) {
+            return;
+        }
+
+        $service = $this->getGoogleCalendarService(); /** @var \Google_CalendarService */
+        $event = $service->events->get($this->calendar_id, $ules->getGcalEventId());
+
+        $this->ulesAdatokEventbe($ules, $event);
+
+        $service->events->update($this->calendar_id, $ules->getGcalEventId(), $event, array("sendNotifications" => true));
+    }
 
     public function ulesDelete(GcalEvent $event)
     {
