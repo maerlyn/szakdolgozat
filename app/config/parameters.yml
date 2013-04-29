@@ -16,3 +16,4 @@ parameters:
     gcal_client_id: 758449309528.apps.googleusercontent.com
     gcal_client_secret: ow-WSp58tesO44eubhw6nzQO
     gcal_refresh_token: 1/xIBM28mitPZGfiDigrYDAjhxyzSpUEOQpHfxJ3Fl6y8
+    gcal_calendar_id: hok.uni-pannon.hu_3rh9m6rutish9tuc1h4vks8ptk@group.calendar.google.com

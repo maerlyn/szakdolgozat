@@ -13,6 +13,6 @@ services:
 
     szakdolgozat.ules.gcal_event_listener:
         class: Szakdolgozat\UlesBundle\EventListener\GcalEventListener
-        arguments: [@session, "%gcal_client_id%", "%gcal_client_secret%", "%gcal_refresh_token%"]
+        arguments: [@session, @doctrine.orm.default_entity_manager, "%gcal_client_id%", "%gcal_client_secret%", "%gcal_refresh_token%", "%gcal_calendar_id%"]
         tags:
             - { name: "kernel.event_subscriber" }

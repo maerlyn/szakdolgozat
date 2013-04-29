@@ -22,7 +22,7 @@ class FelhasznaloParamConverter implements ParamConverterInterface
         $id = $request->attributes->get("id");
 
         $dql = 'SELECT f, j FROM Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo f
-            JOIN f.jogok j WHERE f.id = ?1';
+            LEFT JOIN f.jogok j WHERE f.id = ?1';
 
         $f = $this->entityManager
             ->createQuery($dql)
