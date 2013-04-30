@@ -25,3 +25,9 @@ szakdolgozat_jegyzokonyv_jegyzokonyv_show:
 szakdolgozat_jegyzokonyv_jegyzokonyv_pdf:
     pattern:    /{id}/pdf
     defaults:   { _controller: SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:pdf }
+
+szakdolgozat_jegyzokonyv_jegyzokonyv_lezarasifolyamat:
+    pattern:    /{id}/lezarasifolyamat
+    defaults:   { _controller: SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:lezarasifolyamat }
+    requirements:
+        _method: POST

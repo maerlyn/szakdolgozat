@@ -153,4 +153,18 @@
     {% endif %}
 {% endfor %}
 
+<form method="post" action="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_lezarasifolyamat", { "id": jegyzokonyv.id }) }}" class="form-horizontal">
+    <div class="form-actions">
+    {% if not jegyzokonyv.lezarva and jegyzokonyv.jegyzokonyviro == app.user %}
+        <input type="submit" name="lezaras" value="Lezárás" class="btn btn-default" />
+    {% endif %}
+
+    {% if (not jegyzokonyv.hitelesitve1 and jegyzokonyv.hitelesito1 == app.user) or (not jegyzokonyv.hitelesitve2 and jegyzokonyv.hitelesito2 == app.user) %}
+        <input type="submit" name="hitelesites" value="Hitelesítés" class="btn btn-defauolt" />
+    {% endif %}
+
+    <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_pdf", { "id": jegyzokonyv.id }) }}">PDF letöltése</a>
+    </div>
+</form>
+
 {% endblock %}

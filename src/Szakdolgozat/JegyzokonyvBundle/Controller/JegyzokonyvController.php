@@ -5,6 +5,7 @@ namespace Szakdolgozat\JegyzokonyvBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv;
 use Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvFelszolalas;
 use Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvNapirendiPont;
@@ -112,6 +113,10 @@ class JegyzokonyvController extends Controller
 
     public function editAction(Jegyzokonyv $jegyzokonyv, Request $request)
     {
+        if ($jegyzokonyv->getLezarva()) {
+            throw new NotFoundHttpException();
+        }
+
         $jegyzokonyv_form = $this->createForm(new JegyzokonyvType(), $jegyzokonyv);
         $elemek = array();
 
@@ -255,6 +260,42 @@ class JegyzokonyvController extends Controller
         return $this->render("SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:show.html.twig", array(
             "jegyzokonyv"   =>  $jegyzokonyv,
         ));
+    }
+
+    public function lezarasifolyamatAction(Jegyzokonyv $jegyzokonyv, Request $request)
+    {
+        if (
+            $request->request->has("lezaras") &&
+            !$jegyzokonyv->getLezarva() &&
+            $jegyzokonyv->getJegyzokonyviro() == $this->getUser()
+        ) {
+            $jegyzokonyv->setLezarva(new \DateTime());
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        if (
+            $request->request->has("hitelesites") &&
+            (
+                (
+                    !$jegyzokonyv->getHitelesitve1() &&
+                    $jegyzokonyv->getHitelesito1() == $this->getUser()
+                ) ||
+                (
+                    !$jegyzokonyv->getHitelesitve2() &&
+                    $jegyzokonyv->getHitelesito2() == $this->getUser()
+                )
+            )
+        ) {
+            if ($jegyzokonyv->getHitelesito1() == $this->getUser()) {
+                $jegyzokonyv->setHitelesitve1(new \DateTime());
+            } else {
+                $jegyzokonyv->setHitelesitve2(new \DateTime());
+            }
+
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->redirect($this->generateUrl("szakdolgozat_jegyzokonyv_jegyzokonyv_show", array("id" => $jegyzokonyv->getId())));
     }
 
     protected function elemTemplatek()
