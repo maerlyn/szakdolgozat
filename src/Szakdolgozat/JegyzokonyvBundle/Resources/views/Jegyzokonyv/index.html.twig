@@ -21,10 +21,11 @@
             <td>{{ j.datum|date("Y. m. d. H:i") }}</td>
             <td>{{ j.jegyzokonyviro.nev }}</td>
             <td>
-            {% if j.jegyzokonyviro == app.user %}
+            {% if j.jegyzokonyviro == app.user and not j.lezarva %}
                 <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_edit", { "id": j.id }) }}">szerkesztés</a>
             {% endif %}
-            {% if j.jegyzokonyviro == app.user or is_granted(ROLE_ADMINISZTRATOR) %}
+            <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_show", { "id": j.id }) }}">megtekintés</a>
+            {% if j.jegyzokonyviro == app.user or is_granted("ROLE_ADMINISZTRATOR") %}
                 <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_pdf", { "id": j.id }) }}">PDF</a>
             {% endif %}
             </td>

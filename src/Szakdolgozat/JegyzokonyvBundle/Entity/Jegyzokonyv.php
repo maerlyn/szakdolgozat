@@ -83,6 +83,21 @@ class Jegyzokonyv
     protected $elemek;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $lezarva;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $hitelesitve_1;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $hitelesitve_2;
+
+    /**
      * Get id
      *
      * @return integer
@@ -390,5 +405,74 @@ class Jegyzokonyv
     public function getJelenLevoSzavazatiJoguak()
     {
         return $this->jelen_levo_szavazati_joguak;
+    }
+
+    /**
+     * Set lezarva
+     *
+     * @param \DateTime $lezarva
+     * @return Jegyzokonyv
+     */
+    public function setLezarva($lezarva)
+    {
+        $this->lezarva = $lezarva;
+    
+        return $this;
+    }
+
+    /**
+     * Get lezarva
+     *
+     * @return \DateTime 
+     */
+    public function getLezarva()
+    {
+        return $this->lezarva;
+    }
+
+    /**
+     * Set hitelesitve_1
+     *
+     * @param \DateTime $hitelesitve1
+     * @return Jegyzokonyv
+     */
+    public function setHitelesitve1($hitelesitve1)
+    {
+        $this->hitelesitve_1 = $hitelesitve1;
+    
+        return $this;
+    }
+
+    /**
+     * Get hitelesitve_1
+     *
+     * @return \DateTime 
+     */
+    public function getHitelesitve1()
+    {
+        return $this->hitelesitve_1;
+    }
+
+    /**
+     * Set hitelesitve_2
+     *
+     * @param \DateTime $hitelesitve2
+     * @return Jegyzokonyv
+     */
+    public function setHitelesitve2($hitelesitve2)
+    {
+        $this->hitelesitve_2 = $hitelesitve2;
+    
+        return $this;
+    }
+
+    /**
+     * Get hitelesitve_2
+     *
+     * @return \DateTime 
+     */
+    public function getHitelesitve2()
+    {
+        return $this->hitelesitve_2;
     }
 }

@@ -1,0 +1,156 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<div class="page-header">
+    <h1>Jegyzőkönyv megtekintése</h1>
+</div>
+
+<h2>Alapadatok</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>Jegyzőkönyvíró</th>
+        <td>{{ jegyzokonyv.jegyzokonyviro.nev }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Első hitelesítő</th>
+        <td>{{ jegyzokonyv.hitelesito1.nev }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Második hitelesítő</th>
+        <td>{{ jegyzokonyv.hitelesito2.nev }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Név</th>
+        <td>{{ jegyzokonyv.nev }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Dátum</th>
+        <td>{{ jegyzokonyv.datum|date("Y. m. d. H:i") }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Ülés vége</th>
+        <td>{{ jegyzokonyv.ulesVege|date("H:i") }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Helyszín</th>
+        <td>{{ jegyzokonyv.helyszin }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Az ülés határozatképes</th>
+        <td>{{ jegyzokonyv.ulesHatarozatkepes ? "igen" : "nem" }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Szavazati jogú tagok száma</th>
+        <td>{{ jegyzokonyv.szavazatiJoguTagokSzama }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Jelen levő szavazati jogú tagok</th>
+        <td>{{ jegyzokonyv.jelenLevoSzavazatiJoguak }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Lezárva</th>
+        <td>{{ jegyzokonyv.lezarva ? jegyzokonyv.lezarva|date("Y. m. d. H:i") : "nem" }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Első hitelesítő hitelesítette</th>
+        <td>{{ jegyzokonyv.hitelesitve1 ? jegyzokonyv.hitelesitve1|date("Y. m. d. H:i") : "nem" }}</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th>Második hitelesítő hitelesítette</th>
+        <td>{{ jegyzokonyv.hitelesitve2 ? jegyzokonyv.hitelesitve2|date("Y. m. d. H:i") : "nem" }}</td>
+        <td></td>
+    </tr>
+</table>
+
+<h2>Elemek</h2>
+
+{% for elem in jegyzokonyv.elemek %}
+    {% if elem.tipus == "napirendipont" %}
+    <h3>Napirendi pont</h3>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Előterjesztő</th>
+            <td>{{ elem.eloterjeszto }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Cím</th>
+            <td>{{ elem.cim }}</td>
+            <td></td>
+        </tr>
+    </table>
+    {% elseif elem.tipus == "felszolalas" %}
+    <h3>Felszólalás</h3>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Előterjesztő</th>
+            <td>{{ elem.eloterjeszto }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Szöveg</th>
+            <td>{{ elem.szoveg }}</td>
+            <td></td>
+        </tr>
+    </table>
+    {% elseif elem.tipus == "szavazas" %}
+    <h3>Szavazás</h3>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Cím</th>
+            <td>{{ elem.cim }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Mellette</th>
+            <td>{{ elem.mellette }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Ellene</th>
+            <td>{{ elem.ellene }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Tartózkodott</th>
+            <td>{{ elem.tartozkodott }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Érvénytelen</th>
+            <td>{{ elem.ervenytelen }}</td>
+            <td></td>
+        </tr>
+    </table>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

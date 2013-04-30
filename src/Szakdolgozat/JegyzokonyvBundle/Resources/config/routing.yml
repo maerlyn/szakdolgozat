@@ -18,6 +18,10 @@ szakdolgozat_jegyzokonyv_jegyzokonyv_edit:
     pattern:    /{id}/szerkesztes
     defaults:   { _controller: SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:edit }
 
+szakdolgozat_jegyzokonyv_jegyzokonyv_show:
+    pattern:    /{id}/megtekintes
+    defaults:   { _controller: SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:show }
+
 szakdolgozat_jegyzokonyv_jegyzokonyv_pdf:
     pattern:    /{id}/pdf
     defaults:   { _controller: SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:pdf }

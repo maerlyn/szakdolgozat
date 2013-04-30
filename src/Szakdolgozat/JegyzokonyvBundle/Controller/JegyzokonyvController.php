@@ -250,6 +250,13 @@ class JegyzokonyvController extends Controller
         die();
     }
 
+    public function showAction(Jegyzokonyv $jegyzokonyv)
+    {
+        return $this->render("SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:show.html.twig", array(
+            "jegyzokonyv"   =>  $jegyzokonyv,
+        ));
+    }
+
     protected function elemTemplatek()
     {
         return array(
