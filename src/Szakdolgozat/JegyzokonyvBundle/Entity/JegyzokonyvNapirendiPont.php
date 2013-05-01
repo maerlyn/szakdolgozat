@@ -3,6 +3,8 @@
 namespace Szakdolgozat\JegyzokonyvBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\FormFactory;
+use Szakdolgozat\JegyzokonyvBundle\Form\NapirendiPontType;
 
 /**
  * @ORM\Entity
@@ -145,5 +147,14 @@ class JegyzokonyvNapirendiPont extends JegyzokonyvElem
     public function getEloterjeszto()
     {
         return $this->eloterjeszto;
+    }
+
+    public function szerkesztesAdatok(FormFactory $factory)
+    {
+        return array(
+            "id"    =>  $this->getId(),
+            "tipus" =>  "napirendipont",
+            "form"  =>  $factory->create(new NapirendiPontType(), $this),
+        );
     }
 }

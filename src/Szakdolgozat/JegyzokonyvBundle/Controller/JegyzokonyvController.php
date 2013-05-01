@@ -2,11 +2,13 @@
 
 namespace Szakdolgozat\JegyzokonyvBundle\Controller;
 
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Szakdolgozat\JegyzokonyvBundle\Entity\Jegyzokonyv;
+use Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvElem;
 use Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvFelszolalas;
 use Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvNapirendiPont;
 use Szakdolgozat\JegyzokonyvBundle\Entity\JegyzokonyvSzavazas;
@@ -121,24 +123,7 @@ class JegyzokonyvController extends Controller
         $elemek = array();
 
         foreach ($jegyzokonyv->getElemek() as $elem) {
-            if ($elem instanceof JegyzokonyvFelszolalas) {
-                $tipus = "felszolalas";
-                $form  = $this->createForm(new FelszolalasType(), $elem);
-            }
-            elseif ($elem instanceof JegyzokonyvNapirendiPont) {
-                $tipus = "napirendipont";
-                $form  = $this->createForm(new NapirendiPontType(), $elem);
-            }
-            else {
-                $tipus = "szavazas";
-                $form  = $this->createForm(new SzavazasType(), $elem);
-            }
-
-            $elemek[] = array(
-                "id"    =>  $elem->getId(),
-                "tipus" =>  $tipus,
-                "form"  =>  $form,
-            );
+            $elemek[] = $elem->szerkesztesAdatok($this->get("form.factory"));
         }
 
         if ($request->isMethod("post")) {
@@ -150,30 +135,7 @@ class JegyzokonyvController extends Controller
             $kovetkezo_elem = 0;
 
             foreach ($request_elemek as $k => $request_elem) {
-                if ($k < 0) { // uj elem
-                    switch ($request_elem["tipus"]) {
-                        case "felszolalas":   $form = $this->createForm(new FelszolalasType());   break;
-                        case "napirendipont": $form = $this->createForm(new NapirendiPontType()); break;
-                        case "szavazas":      $form = $this->createForm(new SzavazasType());      break;
-                    }
-                } else { // letezo elem
-                    switch ($request_elem["tipus"]) {
-                        case "felszolalas":
-                            $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvFelszolalas")->find($k);
-                            $form = $this->createForm(new FelszolalasType(), $obj);
-                            break;
-                        case "napirendipont":
-                            $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvNapirendiPont")->find($k);
-                            $form = $this->createForm(new NapirendiPontType(), $obj);
-                            break;
-                        case "szavazas":
-                            $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvSzavazas")->find($k);
-                            $form = $this->createForm(new SzavazasType(), $obj);
-                            break;
-                    }
-                }
-
-                // tehat megvannak a formjaink
+                $form = $this->felhasznaloiAdatokbolForm($k, $request_elem);
                 $form->bind($request_elem);
 
                 $elemek[] = array(
@@ -219,12 +181,7 @@ class JegyzokonyvController extends Controller
                     $jegyzokonyv->addElemek($obj);
                 }
 
-                // torlendoek torlese
-                $torolt_elemek = $request->request->get("toroltelemek", array());
-                foreach ($torolt_elemek as $torolt_elem_id) {
-                    $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvElem")->find($torolt_elem_id);
-                    $em->remove($obj);
-                }
+                $this->toroltElemekTorlese($jegyzokonyv, $em, $request->request->get("toroltelemek", array()));
 
                 $em->persist($jegyzokonyv);
                 $em->flush();
@@ -297,6 +254,49 @@ class JegyzokonyvController extends Controller
         }
 
         return $this->redirect($this->generateUrl("szakdolgozat_jegyzokonyv_jegyzokonyv_show", array("id" => $jegyzokonyv->getId())));
+    }
+
+    protected function felhasznaloiAdatokbolForm($azonosito, array $request_elem)
+    {
+        if ($azonosito < 0) { // uj elem
+            switch ($request_elem["tipus"]) {
+                case "felszolalas":   $form = $this->createForm(new FelszolalasType());   break;
+                case "napirendipont": $form = $this->createForm(new NapirendiPontType()); break;
+                case "szavazas":      $form = $this->createForm(new SzavazasType());      break;
+            }
+        } else { // letezo elem
+            switch ($request_elem["tipus"]) {
+                case "felszolalas":
+                    $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvFelszolalas")->find($k);
+                    $form = $this->createForm(new FelszolalasType(), $obj);
+                    break;
+                case "napirendipont":
+                    $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvNapirendiPont")->find($k);
+                    $form = $this->createForm(new NapirendiPontType(), $obj);
+                    break;
+                case "szavazas":
+                    $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvSzavazas")->find($k);
+                    $form = $this->createForm(new SzavazasType(), $obj);
+                    break;
+            }
+        }
+
+        return $form;
+    }
+
+    protected function toroltElemekTorlese(Jegyzokonyv $jegyzokonyv, $em, array $toroltelemek)
+    {
+        $repo = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvElem");
+
+        foreach ($toroltelemek as $torolt_elem_id) {
+            $elem = $repo->find($torolt_elem_id);
+
+            if ($elem->getJegyzokonyv() != $jegyzokonyv) {
+                throw new \InvalidArgumentException("Nem a szerkesztett jegyzőkönyvbe tartozó elemet próbáltál törölni");
+            }
+
+            $em->remove($elem);
+        }
     }
 
     protected function elemTemplatek()

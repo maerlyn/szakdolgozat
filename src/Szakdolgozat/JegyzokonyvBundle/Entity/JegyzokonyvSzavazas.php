@@ -3,6 +3,8 @@
 namespace Szakdolgozat\JegyzokonyvBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\FormFactory;
+use Szakdolgozat\JegyzokonyvBundle\Form\SzavazasType;
 
 /**
  * @ORM\Entity
@@ -233,4 +235,14 @@ class JegyzokonyvSzavazas extends JegyzokonyvElem
     {
         return "szavazas";
     }
+
+    public function szerkesztesAdatok(FormFactory $factory)
+    {
+        return array(
+            "id"    =>  $this->getId(),
+            "tipus" =>  "szavazas",
+            "form"  =>  $factory->create(new SzavazasType(), $this),
+        );
+    }
+
 }
