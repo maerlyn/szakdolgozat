@@ -1,0 +1,28 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Név</th>
+        <th>Dátum</th>
+        <th>Jegyzőkönyvíró</th>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for j in jegyzokonyvek %}
+        <tr>
+            <td>{{ j.nev }}</td>
+            <td>{{ j.datum|date("Y. m. d. H:i") }}</td>
+            <td>{{ j.jegyzokonyviro.nev }}</td>
+            <td>
+                {% if j.jegyzokonyviro == app.user and not j.lezarva %}
+                    <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_edit", { "id": j.id }) }}">szerkesztés</a>
+                {% endif %}
+                <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_show", { "id": j.id }) }}">megtekintés</a>
+                {% if j.jegyzokonyviro == app.user or is_granted("ROLE_ADMINISZTRATOR") %}
+                    <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_pdf", { "id": j.id }) }}">PDF</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

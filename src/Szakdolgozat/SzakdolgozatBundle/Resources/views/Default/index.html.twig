@@ -1,5 +1,19 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-Ez a bejelentkezettek kezdőoldala. Ide jön majd mondjuk lista az üléseiről, függőben levő jegyzőkönyveiről.
+<h1>Következő üléseim</h1>
+
+{% include "SzakdolgozatUlesBundle:Ules:_list.html.twig" with { "ulesek": kovetkezoUleseim } %}
+
+<h1>Lezáratlan jegyzőkönyveim</h1>
+
+{% include "SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:_list.html.twig" with { "jegyzokonyvek": lezaratlanJegyzokonyveim } %}
+
+<h1>Hitelesítésre váró jegyzőkönyveim</h1>
+
+{% include "SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:_list.html.twig" with { "jegyzokonyvek": hitelesitesreVaroJegyzokonyveim } %}
+
+<h1>Közelmúltbeli, jegyzőkönyv nélküli üléseim</h1>
+
+{% include "SzakdolgozatUlesBundle:Ules:_list.html.twig" with { "ulesek": jegyzokonyvNelkuliUleseim } %}
 {% endblock %}
