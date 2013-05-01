@@ -33,6 +33,9 @@
 
     <div class="form-actions">
         {{ form_widget(form._token) }}
+        {% for id in torolt_elemek|default([]) %}
+        <input type="hidden" name="toroltelemek[]" value="{{ id }}" />
+        {% endif %}
         <input type="submit" value="Mentés" class="btn btn-primary" />
         <a href="{{ path("szakdolgozat_jegyzokonyv_jegyzokonyv_index") }}">mégsem</a>
     </div>

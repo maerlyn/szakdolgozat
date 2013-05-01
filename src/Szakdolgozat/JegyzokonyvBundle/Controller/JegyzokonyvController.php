@@ -243,6 +243,7 @@ class JegyzokonyvController extends Controller
             "form"      =>  $jegyzokonyv_form->createView(),
             "elemek"    =>  $elemek,
             "templatek" =>  $this->elemTemplatek(),
+            "torolt_elemek" =>  $request->request->get("toroltelemek", array()),
         ));
     }
 
