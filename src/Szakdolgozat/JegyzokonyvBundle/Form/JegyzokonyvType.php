@@ -12,7 +12,7 @@ class JegyzokonyvType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add("nev", "text", array(
-            "label"         =>  "Név",
+            "label"         =>  "Esemény megnevezése",
             "constraints"   =>  new Assert\NotBlank(),
         ));
 
