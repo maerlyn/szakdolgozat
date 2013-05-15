@@ -30,7 +30,7 @@ class Pdf
      */
     protected function alapMPDF()
     {
-        $mpdf = new mPDF("utf-8", "A4", 14, "", 15, 15, 50, 16, 9, 9, "P");
+        $mpdf = new mPDF("utf-8", "A4", 14, "", 15, 15, 50, 26, 9, 9, "P");
 
         $mpdf->useOddEven = false;
         $mpdf->useOnlyCoreFonts = true;
