@@ -267,15 +267,15 @@ class JegyzokonyvController extends Controller
         } else { // letezo elem
             switch ($request_elem["tipus"]) {
                 case "felszolalas":
-                    $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvFelszolalas")->find($k);
+                    $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvFelszolalas")->find($azonosito);
                     $form = $this->createForm(new FelszolalasType(), $obj);
                     break;
                 case "napirendipont":
-                    $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvNapirendiPont")->find($k);
+                    $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvNapirendiPont")->find($azonosito);
                     $form = $this->createForm(new NapirendiPontType(), $obj);
                     break;
                 case "szavazas":
-                    $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvSzavazas")->find($k);
+                    $obj = $this->getDoctrine()->getRepository("SzakdolgozatJegyzokonyvBundle:JegyzokonyvSzavazas")->find($azonosito);
                     $form = $this->createForm(new SzavazasType(), $obj);
                     break;
             }
