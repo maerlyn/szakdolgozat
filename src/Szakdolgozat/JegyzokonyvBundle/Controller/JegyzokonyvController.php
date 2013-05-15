@@ -208,6 +208,8 @@ class JegyzokonyvController extends Controller
     {
         $exporter = $this->get("szakdolgozat.jegyzokonyv.export.pdf");
 
+        // deprecated errorokat dob sajnos, ezeket tiltani kell
+        error_reporting(error_reporting() && ~E_DEPRECATED);
         $exporter->jegyzokonyv($jegyzokonyv);
         //az elozo sor visszaadja a usernek
         die();
