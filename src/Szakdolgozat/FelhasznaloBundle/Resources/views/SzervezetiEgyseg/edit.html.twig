@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<div class="page-header">
+    <h1>Szervezeti egység szerkesztése</h1>
+</div>
+
+{% include "SzakdolgozatFelhasznaloBundle:SzervezetiEgyseg:_form.html.twig" %}
+
+<h2>Szervezeti egység törlése</h2>
+
+<form action="{{ path("szakdolgozat_felhasznalo_szervezetiegyseg_delete", { "id": app.request.get("id") }) }}" method="post" class="form-horizontal">
+    <div class="form-actions">
+        {% if sze.felhasznalok|length %}
+        Ez a szervezeti egység nem törölhető, mert vannak benne felhasználók.
+        {% else %}
+        <input type="submit" class="btn btn-danger" value="Törlés" />
+        {% endif %}
+    </div>
+</form>
+{% endblock %}

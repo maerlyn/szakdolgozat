@@ -24,8 +24,9 @@ class FelhasznaloType extends AbstractType
             ),
         ));
 
-        $builder->add("szervezeti_egyseg", "text", array(
+        $builder->add("szervezeti_egyseg", "entity", array(
             "label"         =>  "Szervezeti egység",
+            "class"         =>  "SzakdolgozatFelhasznaloBundle:SzervezetiEgyseg",
             "constraints"   =>  new Assert\NotBlank(),
         ));
 
@@ -51,7 +52,6 @@ class FelhasznaloType extends AbstractType
             "data_class" => 'Szakdolgozat\FelhasznaloBundle\Entity\Felhasznalo',
         ));
     }
-
 
     public function getName()
     {

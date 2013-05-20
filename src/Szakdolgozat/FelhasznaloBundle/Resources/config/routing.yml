@@ -9,3 +9,23 @@ szakdolgozat_felhasznalo_felhasznalo_new:
 szakdolgozat_felhasznalo_felhasznalo_edit:
     pattern:    /{id}/szerkesztes
     defaults:   { _controller: SzakdolgozatFelhasznaloBundle:Felhasznalo:edit }
+
+#####
+
+szakdolgozat_felhasznalo_szervezetiegyseg_index:
+    pattern:    /szervezeti_egysegek
+    defaults:   { _controller: SzakdolgozatFelhasznaloBundle:SzervezetiEgyseg:index }
+
+szakdolgozat_felhasznalo_szervezetiegyseg_new:
+    pattern:    /szervezeti_egyseg/uj
+    defaults:   { _controller: SzakdolgozatFelhasznaloBundle:SzervezetiEgyseg:new }
+
+szakdolgozat_felhasznalo_szervezetiegyseg_edit:
+    pattern:    /szervezeti_egyseg/{id}/szerkesztes
+    defaults:   { _controller: SzakdolgozatFelhasznaloBundle:SzervezetiEgyseg:edit }
+
+szakdolgozat_felhasznalo_szervezetiegyseg_delete:
+    pattern:    /szervezeti_egyseg/{id}/torles
+    defaults:   { _controller: SzakdolgozatFelhasznaloBundle:SzervezetiEgyseg:delete }
+    requirements:
+        _method: POST

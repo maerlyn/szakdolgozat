@@ -32,7 +32,7 @@ class Felhasznalo implements AdvancedUserInterface
     protected $nev;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\ManyToOne(targetEntity="SzervezetiEgyseg", inversedBy="felhasznalok")
      */
     protected $szervezeti_egyseg;
 
@@ -51,6 +51,7 @@ class Felhasznalo implements AdvancedUserInterface
      * @ORM\Column(type="boolean")
      */
     protected $bejelentkezhet;
+
 
     public function getRoles()
     {
@@ -128,29 +129,6 @@ class Felhasznalo implements AdvancedUserInterface
     }
 
     /**
-     * Set szervezeti_egyseg
-     *
-     * @param string $szervezetiEgyseg
-     * @return Felhasznalo
-     */
-    public function setSzervezetiEgyseg($szervezetiEgyseg)
-    {
-        $this->szervezeti_egyseg = $szervezetiEgyseg;
-    
-        return $this;
-    }
-
-    /**
-     * Get szervezeti_egyseg
-     *
-     * @return string 
-     */
-    public function getSzervezetiEgyseg()
-    {
-        return $this->szervezeti_egyseg;
-    }
-
-    /**
      * Set pozicio
      *
      * @param string $pozicio
@@ -179,7 +157,7 @@ class Felhasznalo implements AdvancedUserInterface
      * @param \Szakdolgozat\FelhasznaloBundle\Entity\Jog $jogok
      * @return Felhasznalo
      */
-    public function addJogok(\Szakdolgozat\FelhasznaloBundle\Entity\Jog $jogok)
+    public function addJogok(Jog $jogok)
     {
         $this->jogok[] = $jogok;
     
@@ -191,7 +169,7 @@ class Felhasznalo implements AdvancedUserInterface
      *
      * @param \Szakdolgozat\FelhasznaloBundle\Entity\Jog $jogok
      */
-    public function removeJogok(\Szakdolgozat\FelhasznaloBundle\Entity\Jog $jogok)
+    public function removeJogok(Jog $jogok)
     {
         $this->jogok->removeElement($jogok);
     }
@@ -275,5 +253,28 @@ class Felhasznalo implements AdvancedUserInterface
     public function isEnabled()
     {
         return $this->bejelentkezhet;
+    }
+
+    /**
+     * Set szervezeti_egyseg
+     *
+     * @param \Szakdolgozat\FelhasznaloBundle\Entity\SzervezetiEgyseg $szervezetiEgyseg
+     * @return Felhasznalo
+     */
+    public function setSzervezetiEgyseg(SzervezetiEgyseg $szervezetiEgyseg = null)
+    {
+        $this->szervezeti_egyseg = $szervezetiEgyseg;
+    
+        return $this;
+    }
+
+    /**
+     * Get szervezeti_egyseg
+     *
+     * @return \Szakdolgozat\FelhasznaloBundle\Entity\SzervezetiEgyseg 
+     */
+    public function getSzervezetiEgyseg()
+    {
+        return $this->szervezeti_egyseg;
     }
 }

@@ -8,3 +8,9 @@ services:
         arguments: [@doctrine.orm.default_entity_manager]
         tags:
             - { name: "request.param_converter", priority: 100 }
+
+    szakdolgozat.felhasznalo.szervezeti_egyseg_param_converter:
+        class: Szakdolgozat\FelhasznaloBundle\Request\ParamConverter\SzervezetiEgysegParamConverter
+        arguments: [@doctrine.orm.default_entity_manager]
+        tags:
+            - { name: "request.param_converter", priority: 100 }

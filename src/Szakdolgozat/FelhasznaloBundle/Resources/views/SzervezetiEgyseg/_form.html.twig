@@ -1,0 +1,9 @@
+<form action="{{ app.request.requesturi }}" method="post" class="form-horizontal" novalidate="novalidate">
+    {{ form_row(form.nev) }}
+
+    <div class="form-actions">
+        {{ form_widget(form._token) }}
+        <input type="submit" value="Mentés" class="btn btn-primary" />
+        <a href="{{ path("szakdolgozat_felhasznalo_szervezetiegyseg_index") }}">mégsem</a>
+    </div>
+</form>

@@ -1,0 +1,30 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<div class="page-header">
+    <h1>Szervezeti egységek</h1>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Név</th>
+            <th>Felhasználók</th>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for sze in szervezeti_egysegek %}
+        <tr>
+            <td>{{ sze.nev }}</td>
+            <td>{{ sze.felhasznalok|length }}</td>
+            <td>
+                <a href="{{ path("szakdolgozat_felhasznalo_szervezetiegyseg_edit", { "id": sze.id }) }}">szerkesztés</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ path("szakdolgozat_felhasznalo_szervezetiegyseg_new") }}" class="btn btn-primary">Új szervezeti egység</a>
+{% endblock %}
