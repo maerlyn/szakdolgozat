@@ -1,19 +1,19 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-<h1>Következő üléseim</h1>
+<h3>Következő üléseim</h3>
 
 {% include "SzakdolgozatUlesBundle:Ules:_list.html.twig" with { "ulesek": kovetkezoUleseim } %}
 
-<h1>Lezáratlan jegyzőkönyveim</h1>
+<h3>Lezáratlan jegyzőkönyveim</h3>
 
 {% include "SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:_list.html.twig" with { "jegyzokonyvek": lezaratlanJegyzokonyveim } %}
 
-<h1>Hitelesítésre váró jegyzőkönyveim</h1>
+<h3>Hitelesítésre váró jegyzőkönyveim</h3>
 
 {% include "SzakdolgozatJegyzokonyvBundle:Jegyzokonyv:_list.html.twig" with { "jegyzokonyvek": hitelesitesreVaroJegyzokonyveim } %}
 
-<h1>Közelmúltbeli, jegyzőkönyv nélküli üléseim</h1>
+<h3>Közelmúltbeli, jegyzőkönyv nélküli üléseim</h3>
 
 {% include "SzakdolgozatUlesBundle:Ules:_list.html.twig" with { "ulesek": jegyzokonyvNelkuliUleseim } %}
 {% endblock %}
