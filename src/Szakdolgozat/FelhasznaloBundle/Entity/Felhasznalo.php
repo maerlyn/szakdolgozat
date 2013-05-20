@@ -4,13 +4,13 @@ namespace Szakdolgozat\FelhasznaloBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="Szakdolgozat\FelhasznaloBundle\Entity\FelhasznaloRepository")
  * @ORM\Table(name="felhasznalo")
  */
-class Felhasznalo implements UserInterface
+class Felhasznalo implements AdvancedUserInterface
 {
     /**
      * @var integer
@@ -253,6 +253,26 @@ class Felhasznalo implements UserInterface
      * @return boolean 
      */
     public function getBejelentkezhet()
+    {
+        return $this->bejelentkezhet;
+    }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
     {
         return $this->bejelentkezhet;
     }
