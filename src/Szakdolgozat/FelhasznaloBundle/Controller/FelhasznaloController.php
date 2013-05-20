@@ -60,14 +60,4 @@ class FelhasznaloController extends Controller
             "felhasznalo"   =>  $felhasznalo,
         ));
     }
-
-    public function deleteAction(Felhasznalo $felhasznalo)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $em->remove($felhasznalo);
-        $em->flush();
-
-        return $this->redirect($this->generateUrl("szakdolgozat_felhasznalo_felhasznalo_index"));
-    }
 }

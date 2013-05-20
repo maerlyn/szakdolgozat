@@ -6,12 +6,4 @@
 </div>
 
 {% include "SzakdolgozatFelhasznaloBundle:Felhasznalo:_form.html.twig" %}
-
-<h2>Felhasználó törlése</h2>
-
-<form method="post" class="form form-horizontal" action="{{ path("szakdolgozat_felhasznalo_felhasznalo_delete", { "id": felhasznalo.id }) }}">
-    <div class="form-actions">
-        <input type="submit" value="Törlés" class="btn btn-danger" />
-    </div>
-</form>
 {% endblock %}

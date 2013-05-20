@@ -10,6 +10,7 @@
         <th>Név</th>
         <th>Email</th>
         <th>Jogok</th>
+        <th>Bejelentkezhet</th>
         <td></td>
     </tr>
     {% for f in felhasznalok %}
@@ -17,6 +18,7 @@
         <td>{{ f.nev }}</td>
         <td>{{ f.email }}</td>
         <td>{% for j in f.jogok %}{{ j.nev }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+        <td><span class="label label-{% if f.bejelentkezhet %}success{% else %}important{% endif %}">{{ f.bejelentkezhet ? "igen" : "nem" }}</span></td>
         <td><a href="{{ path("szakdolgozat_felhasznalo_felhasznalo_edit", { "id": f.id }) }}">szerkesztés</a></td>
     </tr>
     {% endfor %}

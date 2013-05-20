@@ -34,6 +34,8 @@ class FelhasznaloType extends AbstractType
             "constraints"   =>  new Assert\NotBlank(),
         ));
 
+        $builder->add("bejelentkezhet", "checkbox");
+
         $builder->add("jogok", "entity", array(
             "class"         =>  "SzakdolgozatFelhasznaloBundle:Jog",
             "expanded"      =>  true,

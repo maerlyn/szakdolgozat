@@ -47,6 +47,11 @@ class Felhasznalo implements UserInterface
      */
     protected $jogok;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $bejelentkezhet;
+
     public function getRoles()
     {
         $ret = array("ROLE_USER");
@@ -227,5 +232,28 @@ class Felhasznalo implements UserInterface
     public function __toString()
     {
         return $this->nev;
+    }
+
+    /**
+     * Set bejelentkezhet
+     *
+     * @param boolean $bejelentkezhet
+     * @return Felhasznalo
+     */
+    public function setBejelentkezhet($bejelentkezhet)
+    {
+        $this->bejelentkezhet = $bejelentkezhet;
+    
+        return $this;
+    }
+
+    /**
+     * Get bejelentkezhet
+     *
+     * @return boolean 
+     */
+    public function getBejelentkezhet()
+    {
+        return $this->bejelentkezhet;
     }
 }
