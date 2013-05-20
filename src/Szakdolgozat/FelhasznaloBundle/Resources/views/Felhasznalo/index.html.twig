@@ -5,7 +5,9 @@
     <h1>Felhasználók</h1>
 </div>
 
-<table class="table table-striped">
+{% for sze in szervezeti_egysegek %}
+<h3>{{ sze.nev }}</h3>
+<table class="table table-striped felhasznalo">
     <tr>
         <th>Név</th>
         <th>Email</th>
@@ -13,7 +15,7 @@
         <th>Bejelentkezhet</th>
         <td></td>
     </tr>
-    {% for f in felhasznalok %}
+    {% for f in sze.felhasznalok %}
     <tr>
         <td>{{ f.nev }}</td>
         <td>{{ f.email }}</td>
@@ -23,6 +25,7 @@
     </tr>
     {% endfor %}
 </table>
+{% endfor %}
 
 <a href="{{ path("szakdolgozat_felhasznalo_felhasznalo_new") }}" class="btn btn-primary">Új felhasználó</a>
 {% endblock %}

@@ -11,10 +11,10 @@ class FelhasznaloController extends Controller
 {
     public function indexAction()
     {
-        $felhasznalok = $this->getDoctrine()->getRepository("SzakdolgozatFelhasznaloBundle:Felhasznalo")->findAll();
+        $szervezeti_egysegek = $this->getDoctrine()->getRepository("SzakdolgozatFelhasznaloBundle:SzervezetiEgyseg")->findAll();
 
         return $this->render("SzakdolgozatFelhasznaloBundle:Felhasznalo:index.html.twig", array(
-            "felhasznalok" => $felhasznalok,
+            "szervezeti_egysegek"   =>  $szervezeti_egysegek,
         ));
     }
 

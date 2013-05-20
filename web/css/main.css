@@ -63,3 +63,19 @@ select#ules_datum_date_month, select#jegyzokonyv_datum_date_month {
     padding: 39px 0 0 0;
     position: relative;
 }
+
+table.felhasznalo td:nth-child(1) {
+    width: 130px;
+}
+
+table.felhasznalo td:nth-child(2) {
+    width: 280px;
+}
+
+table.felhasznalo td:nth-child(3) {
+    width: 220px;
+}
+
+table.felhasznalo td:nth-child(4) {
+    width: 132px;
+}
